@@ -17,6 +17,7 @@ public class SignUp extends AppCompatActivity {
     EditText lName;
     EditText email;
     EditText password;
+    EditText password2;
 
     TextView textError;
     UserDatabase dbHandler;
@@ -31,16 +32,24 @@ public class SignUp extends AppCompatActivity {
         lName = (EditText) findViewById(R.id.lNameText);
         email = (EditText) findViewById(R.id.emailText);
         password = (EditText) findViewById(R.id.passwordText);
+        password2 = (EditText) findViewById(R.id.password2Text);
 
         dbHandler = new UserDatabase(this);
     }
 
+    //compare passwords
+    public boolean checkPass (EditText fpassword, EditText spassword2){
+        return fpassword.getText().toString().equals(spassword2.getText().toString());
+    }
+
     public void newUser (View view) {
-        if(dbHandler.checkUser(username.getText().toString())) {
+        if (dbHandler.checkUser(username.getText().toString())) {
             textError.setText("Username not available");
-        } else if(!allFieldsFilled(view)) {
+        } else if (!allFieldsFilled(view)) {
             textError.setText("Please be sure all entries valid");
-        } else {
+        } else if (!checkPass(password, password2)){
+            textError.setText("Passwords do not match");
+        }else {
             User user = new User(username.getText().toString(), fName.getText().toString(), lName.getText().toString(), email.getText().toString(), password.getText().toString());
             dbHandler.addUser(user);
             Toast.makeText(getApplicationContext(), "User created", Toast.LENGTH_LONG).show();
