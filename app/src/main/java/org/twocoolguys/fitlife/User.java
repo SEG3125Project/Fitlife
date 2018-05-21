@@ -1,14 +1,5 @@
 package org.twocoolguys.fitlife;
 
-/**
- * Created by Kevin on 27/11/17.
- *
- * Container class for Users. Contains information regarding a given user.
- * Also helps for passing information to an from the database
- *
- * Security is very clearly not something we're worrying about.
- */
-
 
 public class User {
     private String name;
