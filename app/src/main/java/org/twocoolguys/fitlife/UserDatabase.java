@@ -28,10 +28,10 @@ public class UserDatabase extends SQLiteOpenHelper{
 
     //Database attributes responsible for user information
     public static final String TABLE_USERS = "UserInformation";
-    public static final String COLUMN_NAME = "Users";         //User's name
-    public static final String COLUMN_FIRSTNAME = "FName";         //User's name
-    public static final String COLUMN_LASTNAME = "LName";         //User's name
-    public static final String COLUMN_EMAIL = "Email";         //User's name
+    public static final String COLUMN_NAME = "Users";
+    public static final String COLUMN_FIRSTNAME = "FName";
+    public static final String COLUMN_LASTNAME = "LName";
+    public static final String COLUMN_EMAIL = "Email";
     public static final String COLUMN_PASSWORDS = "Passwords";
 
     public UserDatabase(Context context){
