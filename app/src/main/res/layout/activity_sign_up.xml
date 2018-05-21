@@ -23,19 +23,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/logoSignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/fitLife_logo1_whiteForeground" />
 
         <EditText
             android:id="@+id/nameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Name"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="@string/userName"
+            android:inputType="textPersonName" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,8 +47,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:hint="@string/firstName"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/lNameText"
@@ -57,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
+                android:hint="@string/lastName"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <EditText
@@ -66,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <EditText
@@ -81,14 +82,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/confirmPassword"
             android:inputType="textPassword" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
-            android:onClick="newUser"/>
+            android:layout_marginTop="10dp"
+            android:background="@drawable/buttonshape"
+            android:onClick="newUser"
+            android:text="@string/signup" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

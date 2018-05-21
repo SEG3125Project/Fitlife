@@ -1,0 +1,82 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >-->
+    <!--<corners-->
+        <!--android:radius="14dp"-->
+        <!--/>-->
+    <!--<solid-->
+        <!--android:color="@color/colorPrimary"/>-->
+    <!--&lt;!&ndash;<gradient&ndash;&gt;-->
+        <!--&lt;!&ndash;android:angle="45"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:centerX="35%"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:centerColor="#47A891"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:startColor="#E8E8E8"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:endColor="#000000"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:type="linear"&ndash;&gt;-->
+        <!--&lt;!&ndash;/>&ndash;&gt;-->
+    <!--<padding-->
+        <!--android:left="0dp"-->
+        <!--android:top="0dp"-->
+        <!--android:right="0dp"-->
+        <!--android:bottom="0dp"-->
+        <!--/>-->
+    <!--<size-->
+        <!--android:width="270dp"-->
+        <!--android:height="60dp"-->
+        <!--/>-->
+    <!--<stroke-->
+        <!--android:width="3dp"-->
+        <!--android:color="#878787"-->
+        <!--/>-->
+<!--</shape>-->
+
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+<!--</selector>-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <layer-list>
+            <item android:right="5dp" android:top="5dp">
+                <shape>
+                    <corners android:radius="20dp" />
+                    <solid android:color="#D6D6D6" />
+                    <!--<size-->
+                        <!--android:width="270dp"-->
+                        <!--android:height="60dp"/>-->
+                </shape>
+            </item>
+            <item
+                android:bottom="3dp"
+                android:left="2dp">
+                <shape>
+                    <gradient android:angle="270"
+                        android:endColor="@color/colorLight" android:startColor="@color/colorMedium1" />
+                    <stroke android:width="1dp" android:color="#BABABA" />
+                    <corners android:radius="20dp" />
+                    <padding android:bottom="10dp" android:left="10dp"
+                        android:right="10dp" android:top="10dp" />
+                    <!--<size-->
+                        <!--android:width="270dp"-->
+                        <!--android:height="60dp"/>-->
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item
+        android:state_pressed="true"
+        android:bottom="3dp"
+        android:left="2dp">
+        <shape>
+            <gradient android:angle="270"
+                android:endColor="@color/colorLight" android:startColor="@color/colorMedium2" />
+            <stroke android:width="1dp" android:color="#BABABA" />
+            <corners android:radius="20dp" />
+            <padding android:bottom="10dp" android:left="10dp"
+                android:right="10dp" android:top="10dp" />
+            <!--<size-->
+            <!--android:width="270dp"-->
+            <!--android:height="60dp"/>-->
+        </shape>
+    </item>
+
+</selector>
