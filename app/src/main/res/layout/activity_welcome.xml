@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"
             android:onClick="newUserOnClick"
-            android:text="@string/signup" />
+            android:text="@string/signup"
+            android:textColor="@color/white"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
