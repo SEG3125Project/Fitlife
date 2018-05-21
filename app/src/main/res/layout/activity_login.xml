@@ -24,27 +24,28 @@
             android:id="@+id/imageView3"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginBottom="30dp"
-            app:srcCompat="@drawable/fitLife_logo1_whiteForeground" />
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/fitlife_logo1_whiteforeground" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/usernameLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="@string/userName"
+            android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/passwordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/password"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:layout_marginBottom="10dp"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttonshape"

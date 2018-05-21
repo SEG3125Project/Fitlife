@@ -26,7 +26,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/fitLife_logo1_whiteForeground" />
+            android:background="@drawable/fitlife_logo1_whiteforeground" />
 
         <Button
             android:id="@+id/loginButton"
