@@ -26,7 +26,7 @@
             android:id="@+id/imageView2"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            app:srcCompat="@drawable/fitlife_logo1_whiteforeground" />
+            app:srcCompat="@drawable/fitlife_logo3" />
 
         <EditText
             android:id="@+id/nameText"
@@ -92,7 +92,8 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/buttonshape"
             android:onClick="newUser"
-            android:text="@string/signup" />
+            android:text="@string/signup"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
