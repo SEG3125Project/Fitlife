@@ -25,7 +25,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/fitlife_logo1_whiteforeground" />
+            app:srcCompat="@drawable/fitlife_logo3" />
 
         <EditText
             android:id="@+id/usernameLogin"

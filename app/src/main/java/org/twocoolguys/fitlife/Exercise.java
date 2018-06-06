@@ -3,19 +3,21 @@ package org.twocoolguys.fitlife;
 
 public class Exercise {
     private String name;
-    private int isCardio; //this has to be an int since SQL databases dont support boolean values therefor we are using 0 or 1
-    private int time;
-    private int weight;
-    private int sets;
-    private int reps;
+    private String isCardio; //this has to be 0 or 1 since SQL databases dont support boolean values therefor we are using 0 or 1
+    private String time;
+    private String weight;
+    private String sets;
+    private String reps;
+    private String owner;
 
-    public Exercise(String name, int isCardio, int time, int weight, int sets, int reps) {
+    public Exercise(String name, String isCardio, String time, String weight, String sets, String reps, String owner) {
         this.name = name;
         this.isCardio = isCardio;
         this.time = time;
         this.weight = weight;
         this.sets = sets;
         this.reps = reps;
+        this.owner = owner;
     }
 
     public String getName() {
@@ -26,43 +28,51 @@ public class Exercise {
         this.name = name;
     }
 
-    public int isCardio() {
+    public String getIsCardio() {
         return isCardio;
     }
 
-    public void setCardio(int cardio) {
-        isCardio = cardio;
+    public void setIsCardio(String isCardio) {
+        this.isCardio = isCardio;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    public int getSets() {
+    public String getSets() {
         return sets;
     }
 
-    public void setSets(int sets) {
+    public void setSets(String sets) {
         this.sets = sets;
     }
 
-    public int getReps() {
+    public String getReps() {
         return reps;
     }
 
-    public void setReps(int reps) {
+    public void setReps(String reps) {
         this.reps = reps;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

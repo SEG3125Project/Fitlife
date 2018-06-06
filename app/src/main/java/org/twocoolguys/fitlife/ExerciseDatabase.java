@@ -20,9 +20,10 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
     public static final String COLUMN_EXERCISES = "exerciseName";
     public static final String COLUMN_ISCARDIO = "isCardio";
     public static final String COLUMN_TIME = "time";
-    public static final String COLUMN_WEIGHT = "groupname";
-    public static final String COLUMN_SETS = "reward";
-    public static final String COLUMN_REPS = "duedate";
+    public static final String COLUMN_WEIGHT = "weight";
+    public static final String COLUMN_SETS = "sets";
+    public static final String COLUMN_REPS = "reps";
+    public static final String COLUMN_USER = "user";
 
 
     public ExerciseDatabase(Context context) {
@@ -35,7 +36,7 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_EXERCISES_TABLE = "CREATE TABLE " + TABLE_EXERCISES + " ("+COLUMN_EXERCISES+" TEXT PRIMARY KEY, " +
                 COLUMN_ISCARDIO + " TEXT, " + COLUMN_TIME + " TEXT, " + COLUMN_WEIGHT
-                + " TEXT, " + COLUMN_SETS + " INTEGER, " + COLUMN_REPS + " INTEGER " + ")";
+                + " TEXT, " + COLUMN_SETS + " TEXT, " + COLUMN_REPS + " TEXT, " + COLUMN_USER + " TEXT " + ")";
         db.execSQL(CREATE_EXERCISES_TABLE);
     }
 
@@ -49,11 +50,12 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_EXERCISES, exercise.getName());
-        values.put(COLUMN_ISCARDIO, exercise.isCardio());
+        values.put(COLUMN_ISCARDIO, exercise.getIsCardio());
         values.put(COLUMN_TIME, exercise.getTime());
         values.put(COLUMN_WEIGHT, exercise.getWeight());
         values.put(COLUMN_SETS, exercise.getSets());
         values.put(COLUMN_REPS, exercise.getReps());
+        values.put(COLUMN_USER, exercise.getOwner());
         db.insert(TABLE_EXERCISES, null, values);
         db.close();
     }
@@ -67,23 +69,25 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
 
         if(cursorDB.moveToFirst()){
             String name = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_EXERCISES));
-            int isCardio = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_ISCARDIO));
-            int time = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_TIME));
-            int weight = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_WEIGHT));
-            int sets = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_SETS));
-            int reps = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_REPS));
-            Exercise newExercise = new Exercise(name, isCardio, time, weight, sets, reps);
+            String isCardio = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_ISCARDIO));
+            String time = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_TIME));
+            String weight = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_WEIGHT));
+            String sets = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_SETS));
+            String reps = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_REPS));
+            String user = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_USER));
+            Exercise newExercise = new Exercise(name, isCardio, time, weight, sets, reps, user);
 
             exerciseList.add(newExercise);
 
             while(cursorDB.moveToNext()){
                 name = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_EXERCISES));
-                isCardio = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_ISCARDIO));
-                time = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_TIME));
-                weight = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_WEIGHT));
-                sets = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_SETS));
-                reps = cursorDB.getInt(cursorDB.getColumnIndex(this.COLUMN_REPS));
-                newExercise = new Exercise(name, isCardio, time, weight, sets, reps);
+                isCardio = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_ISCARDIO));
+                time = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_TIME));
+                weight = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_WEIGHT));
+                sets = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_SETS));
+                reps = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_REPS));
+                user = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_USER));
+                newExercise = new Exercise(name, isCardio, time, weight, sets, reps, user);
                 exerciseList.add(newExercise);
             }
         }
@@ -113,11 +117,12 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_EXERCISES, exercise.getName());
-        cv.put(COLUMN_ISCARDIO, exercise.isCardio());
+        cv.put(COLUMN_ISCARDIO, exercise.getIsCardio());
         cv.put(COLUMN_TIME, exercise.getTime());
         cv.put(COLUMN_WEIGHT, exercise.getWeight());
         cv.put(COLUMN_SETS, exercise.getSets());
         cv.put(COLUMN_REPS, exercise.getReps());
+        cv.put(COLUMN_USER, exercise.getOwner());
         String query = "Select * FROM " + TABLE_EXERCISES + " WHERE " + COLUMN_EXERCISES + " = \'" + exercise.getName() + "\'";
         String[] name = {exercise.getName()};
         Cursor cursor = db.rawQuery(query, null);
