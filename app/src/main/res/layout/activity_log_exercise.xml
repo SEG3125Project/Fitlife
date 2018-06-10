@@ -125,14 +125,32 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/addbutton"
-                    android:onClick="dispatchsKeyEvent" />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/subtractButton"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/subtractbutton"
+                        android:layout_marginHorizontal="5dp"
+                        android:onClick="subtractNewExercise"/>
+
+                    <Button
+                        android:id="@+id/additionButton"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/addbutton"
+                        android:onClick="addNewExercise"
+                        android:layout_marginHorizontal="5dp"/>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -186,11 +204,15 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button3"
-                    android:layout_width="match_parent"
+                    android:id="@+id/submitExerciseButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/buttonshape"
                     android:onClick="getInformationWithIds"
-                    android:text="Button" />
+                    android:text="@string/submit"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
         </LinearLayout>

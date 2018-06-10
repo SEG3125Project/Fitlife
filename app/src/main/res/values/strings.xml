@@ -9,6 +9,8 @@
     <string name="password">Password</string>
     <string name="confirmPassword">Confirm Password</string>
 
+    <string name="submit">Submit</string>
+
     <string name="exerciseLog">Log Exercise</string>
     <string name="exercise">Exercise</string>
     <string name="weight">Weight</string>
