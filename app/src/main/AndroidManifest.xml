@@ -28,7 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Routine"></activity>
+        <activity android:name=".Routine" />
+        <activity android:name=".Chest" />
+        <activity android:name=".Legs" />
+        <activity android:name=".Back" />
+        <activity android:name=".Arms" />
+        <activity android:name=".Core"></activity>
     </application>
 
 </manifest>
