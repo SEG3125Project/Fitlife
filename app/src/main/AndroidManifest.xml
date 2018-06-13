@@ -22,13 +22,19 @@
         <activity android:name=".Login" />
         <activity android:name=".Homepage" />
         <activity android:name=".LogExercise">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".Routine">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Routine" />
         <activity android:name=".Chest" />
         <activity android:name=".Legs" />
         <activity android:name=".Back" />

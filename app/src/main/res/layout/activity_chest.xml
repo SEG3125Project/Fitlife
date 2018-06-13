@@ -4,39 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Chest">
 
-    <ImageView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="5dp"
-        android:background="@drawable/barbell_squat"/>
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="5dp"
-        android:background="@drawable/barbell_squat"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="5dp"
-        android:background="@drawable/barbell_squat"/>
+            <ImageView
+                android:id="@+id/flat_bench"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/flat_bench"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="5dp"
-        android:background="@drawable/barbell_squat"/>
+            <ImageView
+                android:id="@+id/dumbbell_inlcine"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/dumbbell_incline"/>
+
+            <ImageView
+                android:id="@+id/dumbbell_fly"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/dumbbell_fly"/>
+
+            <ImageView
+                android:id="@+id/chest_dip"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/chest_dip"/>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 </LinearLayout>

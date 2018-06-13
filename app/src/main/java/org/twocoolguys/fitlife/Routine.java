@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class Routine extends AppCompatActivity {
 
     ImageView chest, back, legs, arms, core;
-
+    Animation lefttoright, righttoleft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,15 @@ public class Routine extends AppCompatActivity {
         legs = (ImageView) findViewById(R.id.legsImage);
         arms = (ImageView) findViewById(R.id.armsImage);
         core = (ImageView) findViewById(R.id.coreImage);
+
+        righttoleft = AnimationUtils.loadAnimation(this, R.anim.righttoleft);
+        lefttoright = AnimationUtils.loadAnimation(this,R.anim.lefttoright);
+
+        chest.setAnimation(righttoleft);
+        back.setAnimation(lefttoright);
+        legs.setAnimation(righttoleft);
+        arms.setAnimation(lefttoright);
+        core.setAnimation(righttoleft);
 
         chest.setOnClickListener(new View.OnClickListener() {
             @Override
