@@ -15,6 +15,10 @@ import java.util.ArrayList;
 public class LogExercise extends AppCompatActivity {
     int count;
     int groupCount = 10;
+    UserDatabase userDatabase;
+    ExerciseDatabase exerciseDatabase;
+    User onlineUser;
+    String s;
 
     ArrayList<ArrayList<EditText>> listOLists = new ArrayList<ArrayList<EditText>>();
     ArrayList<EditText> singleList = new ArrayList<EditText>();
@@ -26,6 +30,14 @@ public class LogExercise extends AppCompatActivity {
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         Button button = (Button) findViewById(R.id.subtractButton);
         button.setVisibility(View.INVISIBLE);
+
+        SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
+        s = sessionDetails.getString("sessionUsername", null);
+
+        userDatabase = new UserDatabase(this);
+        onlineUser = userDatabase.getUserByName(s);
+
+        exerciseDatabase = new ExerciseDatabase(this);
     }
 
 
@@ -75,24 +87,27 @@ public class LogExercise extends AppCompatActivity {
     }
 
     public void printExercises(View view){
-        SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
-        String s = sessionDetails.getString("sessionUsername", null);
+
+        Exercise exercise;
 
         String name, isCardio, time, weight, sets, reps, user, date;
         System.out.println(listOLists.toString());
-        System.out.println("BREAK");
         for(int i = 0; i < listOLists.size(); i++){
-            System.out.println("BREAK2");
-//            for(int j = 0; j < singleList.size(); j++){
-                name = listOLists.get(i).get(0).getText().toString();
-                weight = listOLists.get(i).get(1).getText().toString();
-                sets = listOLists.get(i).get(2).getText().toString();
-                reps = listOLists.get(i).get(3).getText().toString();
-                isCardio = "false";
-                time = "N/A";
+            name = listOLists.get(i).get(0).getText().toString();
+            weight = listOLists.get(i).get(1).getText().toString();
+            sets = listOLists.get(i).get(2).getText().toString();
+            reps = listOLists.get(i).get(3).getText().toString();
+            isCardio = "false";
+            time = "N/A";
+            user = s;
 
-//            }
+            exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
+            exerciseDatabase.addExercise(exercise);
+
+            
+
         }
+
     }
 
 
