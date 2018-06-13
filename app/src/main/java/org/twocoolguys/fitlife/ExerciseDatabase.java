@@ -24,6 +24,7 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
     public static final String COLUMN_SETS = "sets";
     public static final String COLUMN_REPS = "reps";
     public static final String COLUMN_USER = "user";
+    public static final String COLUMN_DATE = "date";
 
 
     public ExerciseDatabase(Context context) {
@@ -35,8 +36,9 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_EXERCISES_TABLE = "CREATE TABLE " + TABLE_EXERCISES + " ("+COLUMN_EXERCISES+" TEXT PRIMARY KEY, " +
-                COLUMN_ISCARDIO + " TEXT, " + COLUMN_TIME + " TEXT, " + COLUMN_WEIGHT
-                + " TEXT, " + COLUMN_SETS + " TEXT, " + COLUMN_REPS + " TEXT, " + COLUMN_USER + " TEXT " + ")";
+                COLUMN_ISCARDIO + " TEXT, " + COLUMN_TIME + " TEXT, " +
+                COLUMN_WEIGHT + " TEXT, " + COLUMN_SETS + " TEXT, " + COLUMN_REPS + " TEXT, " +
+                COLUMN_USER + " TEXT, " + COLUMN_DATE + " TEXT " + ")";
         db.execSQL(CREATE_EXERCISES_TABLE);
     }
 
@@ -56,6 +58,7 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
         values.put(COLUMN_SETS, exercise.getSets());
         values.put(COLUMN_REPS, exercise.getReps());
         values.put(COLUMN_USER, exercise.getOwner());
+        values.put(COLUMN_DATE, exercise.getDate());
         db.insert(TABLE_EXERCISES, null, values);
         db.close();
     }
@@ -75,7 +78,8 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
             String sets = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_SETS));
             String reps = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_REPS));
             String user = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_USER));
-            Exercise newExercise = new Exercise(name, isCardio, time, weight, sets, reps, user);
+            String date = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_DATE));
+            Exercise newExercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
 
             exerciseList.add(newExercise);
 
@@ -87,7 +91,8 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
                 sets = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_SETS));
                 reps = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_REPS));
                 user = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_USER));
-                newExercise = new Exercise(name, isCardio, time, weight, sets, reps, user);
+                date = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_DATE));
+                newExercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
                 exerciseList.add(newExercise);
             }
         }
@@ -123,6 +128,7 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
         cv.put(COLUMN_SETS, exercise.getSets());
         cv.put(COLUMN_REPS, exercise.getReps());
         cv.put(COLUMN_USER, exercise.getOwner());
+        cv.put(COLUMN_DATE, exercise.getDate());
         String query = "Select * FROM " + TABLE_EXERCISES + " WHERE " + COLUMN_EXERCISES + " = \'" + exercise.getName() + "\'";
         String[] name = {exercise.getName()};
         Cursor cursor = db.rawQuery(query, null);

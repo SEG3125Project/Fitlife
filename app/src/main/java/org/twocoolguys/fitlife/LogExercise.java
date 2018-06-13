@@ -1,5 +1,6 @@
 package org.twocoolguys.fitlife;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -8,9 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class LogExercise extends AppCompatActivity {
     int count;
     int groupCount = 10;
+
+    ArrayList<ArrayList<EditText>> listOLists = new ArrayList<ArrayList<EditText>>();
+    ArrayList<EditText> singleList = new ArrayList<EditText>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +30,7 @@ public class LogExercise extends AppCompatActivity {
 
 
     public void addNewExercise(View view) {
-
+        singleList = new ArrayList<EditText>();
         Button but = (Button) findViewById(R.id.subtractButton);
         but.setVisibility(View.VISIBLE);
 
@@ -32,6 +40,13 @@ public class LogExercise extends AppCompatActivity {
         EditText weightEditText = new EditText(this);
         EditText setsEditText = new EditText(this);
         EditText repsEditText = new EditText(this);
+
+        singleList.add(exerciseEditText);
+        singleList.add(weightEditText);
+        singleList.add(setsEditText);
+        singleList.add(repsEditText);
+
+        listOLists.add(singleList);
 
         count = 0;
 
@@ -53,8 +68,33 @@ public class LogExercise extends AppCompatActivity {
         mLinearLayout.addView(weightEditText);
         mLinearLayout.addView(setsEditText);
         mLinearLayout.addView(repsEditText);
+
+
+
         groupCount += 10;
     }
+
+    public void printExercises(View view){
+        SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
+        String s = sessionDetails.getString("sessionUsername", null);
+
+        String name, isCardio, time, weight, sets, reps, user, date;
+        System.out.println(listOLists.toString());
+        System.out.println("BREAK");
+        for(int i = 0; i < listOLists.size(); i++){
+            System.out.println("BREAK2");
+//            for(int j = 0; j < singleList.size(); j++){
+                name = listOLists.get(i).get(0).getText().toString();
+                weight = listOLists.get(i).get(1).getText().toString();
+                sets = listOLists.get(i).get(2).getText().toString();
+                reps = listOLists.get(i).get(3).getText().toString();
+                isCardio = "false";
+                time = "N/A";
+
+//            }
+        }
+    }
+
 
     public void subtractNewExercise(View veiw) {
 
@@ -64,10 +104,10 @@ public class LogExercise extends AppCompatActivity {
         }
         LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
 
-        EditText exerciseEditText = (EditText) findViewById(24);
+//        EditText exerciseEditText = (EditText) findViewById(24);
 
 
-        mLinearLayout.removeView(exerciseEditText);
+//        mLinearLayout.removeView(exerciseEditText);
     }
 //    public void subtractNewExercise(View veiw){
 //

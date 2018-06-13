@@ -9,8 +9,9 @@ public class Exercise {
     private String sets;
     private String reps;
     private String owner;
+    private String date;
 
-    public Exercise(String name, String isCardio, String time, String weight, String sets, String reps, String owner) {
+    public Exercise(String name, String isCardio, String time, String weight, String sets, String reps, String owner, String date) {
         this.name = name;
         this.isCardio = isCardio;
         this.time = time;
@@ -18,6 +19,7 @@ public class Exercise {
         this.sets = sets;
         this.reps = reps;
         this.owner = owner;
+        this.date = date;
     }
 
     public String getName() {
@@ -74,5 +76,13 @@ public class Exercise {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
