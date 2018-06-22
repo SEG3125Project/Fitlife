@@ -100,6 +100,7 @@ public class LogExercise extends AppCompatActivity {
             isCardio = "false";
             time = "N/A";
             user = s;
+            date="s"; //was getting compilation error was date wasn't initailized so i intiailized it here sir.
 
             exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
             exerciseDatabase.addExercise(exercise);

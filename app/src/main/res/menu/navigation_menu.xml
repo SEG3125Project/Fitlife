@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_view">
+
+
+    <item android:id="@+id/nav_account"
+        android:icon="@mipmap/person_icon"
+        android:title="My Profile"/>
+
+    <item android:id="@+id/nav_calendar"
+        android:icon="@mipmap/calendar_icon"
+        android:title="Calendar"/>
+
+    <item android:id="@+id/nav_exercises"
+        android:icon="@mipmap/fitness_icon"
+        android:title="Exercises"/>
+
+    <item android:id="@+id/nav_logout"
+        android:icon="@mipmap/power_icon"
+        android:title="Logout"/>
+
+</menu>
