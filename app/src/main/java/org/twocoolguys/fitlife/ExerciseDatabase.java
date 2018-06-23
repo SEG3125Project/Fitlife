@@ -138,6 +138,22 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
         }
         db.close();
     }
+
+    public Boolean authDate(String date){
+        Exercise[] exerciseList = getAllExercises();
+        try{
+            for(Exercise e : exerciseList){
+                String edate = e.getDate();
+                if(edate.equals(date)){
+                    return true;
+                }
+            }
+        } catch (Exception E){
+            return false;
+        }
+
+        return false;
+    }
 //    public void updateexercise(Exercise exercise, String oldName) {
 //        //if the name of the exercise is being changed, this method is called
 //        SQLiteDatabase db = this.getWritableDatabase();

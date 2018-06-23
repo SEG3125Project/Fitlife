@@ -17,6 +17,15 @@
     <string name="sets">Sets</string>
     <string name="reps">Reps</string>
 
+    <string name="cardioName">Name</string>
+    <string name="time">Time</string>
+
+    <string name="Nutrition">Nutrition</string>
+    <string name="Calories">Calories</string>
+    <string name="Protein">Protein</string>
+    <string name="Fats">Fats</string>
+    <string name="Carbohydrates">Carbohydrates</string>
+
 
     <string name="login">Log in</string>
     <string name="signup">Sign up</string>

@@ -1,5 +1,6 @@
 package org.twocoolguys.fitlife;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -31,6 +33,15 @@ public class LogExercise extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.subtractButton);
         button.setVisibility(View.INVISIBLE);
 
+        Button homeButton = (Button) findViewById(R.id.homeButtonLogExercise);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LogExercise.this, Calendar.class));
+            }
+        });
+
+
         SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
         s = sessionDetails.getString("sessionUsername", null);
 
@@ -48,10 +59,38 @@ public class LogExercise extends AppCompatActivity {
 
         LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
 
+        LinearLayout horizontal1 = new LinearLayout(this);
+        horizontal1.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+        params.setMargins(0, 100, 0, 0);
+        horizontal1.setLayoutParams(params);
+        LinearLayout horizontal2 = new LinearLayout(this);
+        horizontal2.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout horizontal3 = new LinearLayout(this);
+        horizontal3.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout horizontal4 = new LinearLayout(this);
+        horizontal4.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView textView1 = new TextView(this);
+        textView1.setText("Exercise");
+        TextView textView2 = new TextView(this);
+        textView2.setText("Weight");
+        TextView textView3 = new TextView(this);
+        textView3.setText("Sets");
+        TextView textView4 = new TextView(this);
+        textView4.setText("Reps");
+
+
+
         EditText exerciseEditText = new EditText(this);
         EditText weightEditText = new EditText(this);
         EditText setsEditText = new EditText(this);
         EditText repsEditText = new EditText(this);
+
+
 
         singleList.add(exerciseEditText);
         singleList.add(weightEditText);
@@ -76,10 +115,21 @@ public class LogExercise extends AppCompatActivity {
         System.out.println(count);
         System.out.println(groupCount);
         //        this adds the text when the button is pressed
-        mLinearLayout.addView(exerciseEditText);
-        mLinearLayout.addView(weightEditText);
-        mLinearLayout.addView(setsEditText);
-        mLinearLayout.addView(repsEditText);
+
+        exerciseEditText.setLayoutParams(params);
+
+        horizontal1.addView(textView1);
+        horizontal1.addView(exerciseEditText);
+        mLinearLayout.addView(horizontal1);
+        horizontal2.addView(textView2);
+        horizontal2.addView(weightEditText);
+        mLinearLayout.addView(horizontal2);
+        horizontal3.addView(textView3);
+        horizontal3.addView(setsEditText);
+        mLinearLayout.addView(horizontal3);
+        horizontal4.addView(textView4);
+        horizontal4.addView(repsEditText);
+        mLinearLayout.addView(horizontal4);
 
 
 
@@ -102,10 +152,12 @@ public class LogExercise extends AppCompatActivity {
             user = s;
             date="s"; //was getting compilation error was date wasn't initailized so i intiailized it here sir.
 
+            date = "NOT DONE YET";
+
             exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
             exerciseDatabase.addExercise(exercise);
 
-            
+
 
         }
 
