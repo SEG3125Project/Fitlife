@@ -10,13 +10,12 @@ import android.widget.CalendarView;
 public class Calendar extends AppCompatActivity {
 
     private CalendarView calendarView;
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-
-        Intent intent;
 
         calendarView = (CalendarView) findViewById(R.id.calendarView);
 
@@ -24,8 +23,13 @@ public class Calendar extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 //this is where the pressing of the date stuff will happen
-                String date = year + "/" + (month + 1) + "/" + day;
-                System.out.println(date);
+                date = year + "/" + (month + 1) + "/" + day;
+
+                Intent i = new Intent(Calendar.this, PopupCalendar.class);
+                startActivity(i);
+
+
+                //System.out.println(date);
             }
         });
 
