@@ -59,7 +59,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".PopupCalendar"></activity>
+        <activity android:name=".PopupCalendar"
+            android:theme="@style/AppTheme.PopupTheme"></activity>
     </application>
 
 </manifest>

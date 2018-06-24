@@ -16,7 +16,7 @@ public class Routine extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-    NavigationView navigationView;
+    //NavigationView navigationView;
 
     ImageView chest, back, legs, arms, core;
     Animation lefttoright, righttoleft;
