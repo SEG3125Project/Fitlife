@@ -5,12 +5,16 @@ public class Nutrition {
     private String fats;
     private String protein;
     private String carbs;
+    private String date;
+    private String owner;
 
-    public Nutrition(String calories, String fats, String protein, String carbs) {
+    public Nutrition(String calories, String fats, String protein, String carbs, String date, String owner) {
         this.calories = calories;
         this.fats = fats;
         this.protein = protein;
         this.carbs = carbs;
+        this.date = date;
+        this.owner = owner;
     }
 
     public String getCalories() {
@@ -43,5 +47,21 @@ public class Nutrition {
 
     public void setCarbs(String carbs) {
         this.carbs = carbs;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

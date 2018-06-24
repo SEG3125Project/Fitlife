@@ -61,6 +61,7 @@ public class Calendar extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent i = new Intent(Calendar.this, LogExercise.class);
+                        i.putExtra("date", date);
                         startActivity(i); //go to exercise page
 
                     }
@@ -72,6 +73,7 @@ public class Calendar extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent i = new Intent(Calendar.this, LogNutrition.class);
+                        i.putExtra("date", date);
                         startActivity(i); //go to nutrition page
 
                     }

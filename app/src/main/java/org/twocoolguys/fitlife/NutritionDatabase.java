@@ -21,6 +21,9 @@ public class NutritionDatabase extends SQLiteOpenHelper {
     public static final String COLUMN_CALORIES = "calories";
     public static final String COLUMN_PROTEIN = "protein";
     public static final String COLUMN_CARBS = "carbs";
+    public static final String COLUMN_DATE = "date";
+    public static final String COLUMN_OWNER = "owner";
+
 
 
     public NutritionDatabase(Context context) {
@@ -33,7 +36,8 @@ public class NutritionDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_NUTRITIONS_TABLE = "CREATE TABLE " + TABLE_NUTRITIONS + " (" + COLUMN_CARBS + " TEXT PRIMARY KEY, " +
                 COLUMN_FATS + " TEXT, " + COLUMN_CALORIES + " TEXT, " +
-                COLUMN_PROTEIN + " TEXT " + ")";
+                COLUMN_PROTEIN + " TEXT, " + COLUMN_DATE + " TEXT, " +
+                COLUMN_OWNER + " TEXT " + ")";
         db.execSQL(CREATE_NUTRITIONS_TABLE);
     }
 
@@ -50,6 +54,10 @@ public class NutritionDatabase extends SQLiteOpenHelper {
         values.put(COLUMN_CALORIES, nutrition.getCalories());
         values.put(COLUMN_PROTEIN, nutrition.getProtein());
         values.put(COLUMN_CARBS, nutrition.getCarbs());
+        values.put(COLUMN_DATE, nutrition.getDate());
+        values.put(COLUMN_OWNER, nutrition.getOwner());
+
+
         db.insert(TABLE_NUTRITIONS, null, values);
         db.close();
     }
@@ -66,7 +74,9 @@ public class NutritionDatabase extends SQLiteOpenHelper {
             String calories = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_CALORIES));
             String protein = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_PROTEIN));
             String carbs = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_CARBS));
-            Nutrition newNutrition = new Nutrition(calories, fats, protein, carbs);
+            String date = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_DATE));
+            String owner = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_OWNER));
+            Nutrition newNutrition = new Nutrition(calories, fats, protein, carbs, date, owner);
 
             nutritionList.add(newNutrition);
 
@@ -75,7 +85,9 @@ public class NutritionDatabase extends SQLiteOpenHelper {
                 calories = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_CALORIES));
                 protein = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_PROTEIN));
                 carbs = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_CARBS));
-                newNutrition = new Nutrition(fats, calories, protein, carbs);
+                date = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_DATE));
+                owner = cursorDB.getString(cursorDB.getColumnIndex(this.COLUMN_OWNER));
+                newNutrition = new Nutrition(fats, calories, protein, carbs, date, owner);
                 nutritionList.add(newNutrition);
             }
         }

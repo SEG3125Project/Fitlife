@@ -132,7 +132,7 @@
                 android:layout_gravity="center"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/buttonshape"
-                android:onClick="printExercises"
+                android:onClick="submitOnClick"
                 android:text="@string/submit"
                 android:textColor="@color/white" />
 
