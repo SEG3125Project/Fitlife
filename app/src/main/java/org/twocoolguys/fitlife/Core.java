@@ -1,13 +1,21 @@
 package org.twocoolguys.fitlife;
 
+import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class Core extends AppCompatActivity {
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private NavigationView navigationView;
     ImageView plank, legRaises, crunches;
     Animation lefttoright, righttoleft;
 
@@ -15,6 +23,15 @@ public class Core extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_core);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.coreDrawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        navigationView = (NavigationView) findViewById(R.id.nav);
+        navigationView.setItemIconTintList(null);
+
 
         plank = (ImageView)findViewById(R.id.plank);
         legRaises = (ImageView)findViewById(R.id.leg_raises);
@@ -27,5 +44,37 @@ public class Core extends AppCompatActivity {
         crunches.setAnimation(righttoleft);
         legRaises.setAnimation(lefttoright);
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case(R.id.nav_calendar):
+                        Intent i = new Intent(getApplicationContext(), Calendar.class);
+                        startActivity(i);
+                        break;
+                    case(R.id.nav_exercises):
+                        i = new Intent(getApplicationContext(), Routine.class);
+                        startActivity(i);
+                        break;
+                    case(R.id.nav_logout):
+                        i = new Intent(getApplicationContext(), WelcomeActivity.class);
+                        startActivity(i);
+                        break;
+                }
+
+                return true;
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

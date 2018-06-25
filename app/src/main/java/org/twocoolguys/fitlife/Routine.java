@@ -16,7 +16,7 @@ public class Routine extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-    //NavigationView navigationView;
+    private NavigationView navigationView;
 
     ImageView chest, back, legs, arms, core;
     Animation lefttoright, righttoleft;
@@ -28,14 +28,11 @@ public class Routine extends AppCompatActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.routineDrawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
-
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        /*navigationView = (NavigationView) findViewById(R.id.nav_view); //need to figure out how to bring back the colour of the icons in nav menu
-        navigationView.setItemIconTintList(null);*/
+        navigationView = (NavigationView) findViewById(R.id.nav);
+        navigationView.setItemIconTintList(null);
 
         chest = (ImageView) findViewById(R.id.chestImage);
         back = (ImageView) findViewById(R.id.backImage);
@@ -107,6 +104,28 @@ public class Routine extends AppCompatActivity {
 
         });
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case(R.id.nav_calendar):
+                        Intent i = new Intent(getApplicationContext(), Calendar.class);
+                        startActivity(i);
+                        break;
+                    case(R.id.nav_exercises):
+                        i = new Intent(getApplicationContext(), Routine.class);
+                        startActivity(i);
+                        break;
+                    case(R.id.nav_logout):
+                        i = new Intent(getApplicationContext(), WelcomeActivity.class);
+                        startActivity(i);
+                        break;
+                }
+
+                return true;
+            }
+        });
+
 
 
 
@@ -122,32 +141,5 @@ public class Routine extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*@SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
-
-        switch (id) {
-
-            case R.id.nav_account:
-                Intent acc = new Intent(Routine.this, Back.class); //Don't know where to link this to rn.
-                startActivity(acc);
-                break;
-            case R.id.nav_calendar:
-                Intent cal = new Intent(Routine.this, Homepage.class); //Don't know where to link this to either.
-                startActivity(cal);
-                break;
-            case R.id.nav_exercises:
-                Intent exer = new Intent(Routine.this, Routine.class); //links to exercises
-                startActivity(exer);
-                break;
-
-            case R.id.nav_logout:
-                Intent lo = new Intent(Routine.this, Routine.class); //gotta log out, don't know what to do with this rn.
-                startActivity(lo);
-                break;
-        }
-
-    }*/
 }
