@@ -16,13 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/homeButtonLogNutrition"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/homebutton" />
+            android:orientation="vertical"
+            android:layout_marginVertical="100dp">
 
             <LinearLayout
                 android:id="@+id/verticalLayout1"

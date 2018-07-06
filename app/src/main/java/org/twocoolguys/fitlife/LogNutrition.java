@@ -37,13 +37,13 @@ public class LogNutrition extends AppCompatActivity {
         navigationView.setItemIconTintList(null);
 
 
-        Button homeButton = (Button) findViewById(R.id.homeButtonLogNutrition);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LogNutrition.this, Calendar.class));
-            }
-        });
+//        Button homeButton = (Button) findViewById(R.id.homeButtonLogNutrition);
+//        homeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(LogNutrition.this, Calendar.class));
+//            }
+//        });
 
         Intent intent = getIntent();
         date = intent.getStringExtra("date");

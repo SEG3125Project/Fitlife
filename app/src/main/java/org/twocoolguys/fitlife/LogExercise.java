@@ -49,16 +49,16 @@ public class LogExercise extends AppCompatActivity {
 
 
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        Button button = (Button) findViewById(R.id.subtractButton);
-        button.setVisibility(View.INVISIBLE);
+//        Button button = (Button) findViewById(R.id.subtractButton);
+//        button.setVisibility(View.INVISIBLE);
 
-        Button homeButton = (Button) findViewById(R.id.homeButtonLogExercise);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LogExercise.this, Calendar.class));
-            }
-        });
+//        Button homeButton = (Button) findViewById(R.id.homeButtonLogExercise);
+//        homeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(LogExercise.this, Calendar.class));
+//            }
+//        });
 
 
         SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
@@ -105,8 +105,8 @@ public class LogExercise extends AppCompatActivity {
 
     public void addNewExercise(View view) {
         singleList = new ArrayList<EditText>();
-        Button but = (Button) findViewById(R.id.subtractButton);
-        but.setVisibility(View.VISIBLE);
+//        Button but = (Button) findViewById(R.id.subtractButton);
+//        but.setVisibility(View.VISIBLE);
 
         LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
 
@@ -218,8 +218,8 @@ public class LogExercise extends AppCompatActivity {
     public void subtractNewExercise(View veiw) {
 
         if (groupCount <= 20) {
-            Button button = (Button) findViewById(R.id.subtractButton);
-            button.setVisibility(View.INVISIBLE);
+//            Button button = (Button) findViewById(R.id.subtractButton);
+//            button.setVisibility(View.INVISIBLE);
         }
         LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
 

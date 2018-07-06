@@ -13,12 +13,13 @@
 
     <string name="exerciseLog">Log Exercise</string>
     <string name="exercise">Exercise</string>
-    <string name="weight">Weight</string>
+    <string name="weight">Weight (lbs)</string>
     <string name="sets">Sets</string>
     <string name="reps">Reps</string>
 
+    <string name="cardio">Cardio</string>
     <string name="cardioName">Name</string>
-    <string name="time">Time</string>
+    <string name="time">Time (min)</string>
 
     <string name="Nutrition">Nutrition</string>
     <string name="Calories">Calories</string>

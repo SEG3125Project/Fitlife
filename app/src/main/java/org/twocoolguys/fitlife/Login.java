@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
             editor.putString("sessionUsername", name);
             editor.apply();
 
-            Intent intent = new Intent(getBaseContext(), Homepage.class);
+            Intent intent = new Intent(getBaseContext(), Calendar.class);
             startActivity(intent);
 
         } else if(users.checkUser(name)){
