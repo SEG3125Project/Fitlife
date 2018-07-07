@@ -39,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center">
+            android:textAlignment="center"
+            android:id="@+id/dataLayout">
 
             <TextView
                 android:layout_width="match_parent"
@@ -49,93 +50,7 @@
                 android:textSize="20sp"
                 android:textAlignment="center"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Placeholder text"
-                android:textSize="20sp"
-                android:textAlignment="center"/>
 
         </LinearLayout>
 

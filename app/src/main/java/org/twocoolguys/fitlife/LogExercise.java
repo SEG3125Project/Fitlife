@@ -7,9 +7,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -49,16 +52,16 @@ public class LogExercise extends AppCompatActivity {
 
 
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-//        Button button = (Button) findViewById(R.id.subtractButton);
-//        button.setVisibility(View.INVISIBLE);
 
-//        Button homeButton = (Button) findViewById(R.id.homeButtonLogExercise);
-//        homeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(LogExercise.this, Calendar.class));
-//            }
-//        });
+
+        singleList = new ArrayList<EditText>();
+        singleList.add((EditText) findViewById(R.id.exerciseEditText));
+        singleList.add((EditText) findViewById(R.id.weightEditText));
+        singleList.add((EditText) findViewById(R.id.setsEditText));
+        singleList.add((EditText) findViewById(R.id.repsEditText));
+
+        listOLists.add(singleList);
+
 
 
         SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
@@ -154,20 +157,44 @@ public class LogExercise extends AppCompatActivity {
 
         exerciseEditText.setText("Exercise");
         exerciseEditText.setId(count++ + groupCount);
-        System.out.println(count);
-        weightEditText.setText("Weight");
+//        System.out.println(count);
+        weightEditText.setText("Weight (lbs)");
         weightEditText.setId(count++ + groupCount);
-        System.out.println(count);
+//        System.out.println(count);
         setsEditText.setText("Sets");
         setsEditText.setId(count++ + groupCount);
-        System.out.println(count);
+//        System.out.println(count);
         repsEditText.setText("Reps");
         repsEditText.setId(count++ + groupCount);
-        System.out.println(count);
-        System.out.println(groupCount);
+//        System.out.println(count);
+//        System.out.println(groupCount);
         //        this adds the text when the button is pressed
 
-        exerciseEditText.setLayoutParams(params);
+        final ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(50,30);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        float logicalDensity = metrics.density;
+
+        int px100 = (int) Math.ceil(100 * logicalDensity);
+        int px150 = (int) Math.ceil(150 * logicalDensity);
+
+        textView1.setWidth(px100);
+        textView2.setWidth(px100);
+        textView3.setWidth(px100);
+        textView4.setWidth(px100);
+        exerciseEditText.setWidth(px150);
+        exerciseEditText.setHint("Bench Press");
+        exerciseEditText.setText("");
+        weightEditText.setWidth(px150);
+        weightEditText.setHint("315");
+        weightEditText.setText("");
+        setsEditText.setWidth(px150);
+        setsEditText.setHint("5");
+        setsEditText.setText("");
+        repsEditText.setWidth(px150);
+        repsEditText.setHint("15");
+        repsEditText.setText("");
+
 
         horizontal1.addView(textView1);
         horizontal1.addView(exerciseEditText);
@@ -187,12 +214,12 @@ public class LogExercise extends AppCompatActivity {
         groupCount += 10;
     }
 
-    public void printExercises(View view){
+    public void addExerciseToDB(View view){
 
         Exercise exercise;
 
         String name, isCardio, time, weight, sets, reps, user, date;
-        System.out.println(listOLists.toString());
+//        System.out.println(listOLists.toString());
         for(int i = 0; i < listOLists.size(); i++){
             name = listOLists.get(i).get(0).getText().toString();
             weight = listOLists.get(i).get(1).getText().toString();
@@ -201,9 +228,10 @@ public class LogExercise extends AppCompatActivity {
             isCardio = "false";
             time = "N/A";
             user = s;
-            date="s"; //was getting compilation error was date wasn't initailized so i intiailized it here sir.
 
             date = "NOT DONE YET";
+
+            Log.d("USER", user);
 
             exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
             exerciseDatabase.addExercise(exercise);
