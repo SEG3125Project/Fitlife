@@ -77,14 +77,9 @@ public class Calendar extends AppCompatActivity {
                 Button cancelButton = (Button) mView.findViewById(R.id.cancel);
                 //Chris testing
 
-                //get information from DB
-//                Exercise[] exercises = exerciseDatabase.getAllExercises();
-                if(addNewExercise(mView)){
-                    Log.d("CHRIS", "passed");
-                }
 
-
-
+                addExercises(mView, date);
+                addNutritions(mView, date);
 
                 //Chris testing end
                 mBuilder.setView(mView);
@@ -93,7 +88,6 @@ public class Calendar extends AppCompatActivity {
 
 
                 datePopup.setText(date); //set selected date to the date of the popup
-
 
 
                 logExerciseButton.setOnClickListener(new View.OnClickListener() {
@@ -144,15 +138,15 @@ public class Calendar extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case(R.id.nav_calendar):
+                    case (R.id.nav_calendar):
                         Intent i = new Intent(getApplicationContext(), Calendar.class);
                         startActivity(i);
                         break;
-                    case(R.id.nav_exercises):
+                    case (R.id.nav_exercises):
                         i = new Intent(getApplicationContext(), Routine.class);
                         startActivity(i);
                         break;
-                    case(R.id.nav_logout):
+                    case (R.id.nav_logout):
                         i = new Intent(getApplicationContext(), WelcomeActivity.class);
                         startActivity(i);
                         break;
@@ -163,40 +157,69 @@ public class Calendar extends AppCompatActivity {
         });
 
 
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean addNewExercise(View view){
+    public void addExercises(View view, String date) {
+
+        boolean showNone = true;
 
         Exercise[] exercises = exerciseDatabase.getAllExercises();
 
-        LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.dataLayout);
+        LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.exerciseLayout);
 
-        for(Exercise e : exercises){
-            if(e.getOwner().equals(onlineUser.getName())){
-                Log.d("EXERCISE", e.getName());
+        for (Exercise e : exercises) {
+            if (e.getOwner().equals(onlineUser.getName())) {
+                String exerciseString = "\n Exercise: " + e.getName() + "\n Weight: " + e.getWeight() + "\n Sets: " + e.getSets() + "\n Reps: " + e.getReps();
+
+                TextView textView = new TextView(this);
+                textView.setText(exerciseString);
+                mLinearLayout.addView(textView);
+                showNone = false;
             }
         }
 
-        TextView textView = new TextView(this);
-        textView.setText("TESTING");
-        mLinearLayout.addView(textView);
-
-
-
-        return true;
+        if(showNone){
+            TextView textView = new TextView(this);
+            textView.setText("You have not logged any exercises for this date. Click 'Log Exercise' below to enter this dates information.");
+            mLinearLayout.addView(textView);
+        }
     }
 
+    public void addNutritions(View view, String date) {
+
+        boolean showNone = true;
+
+        Nutrition[] nutritions = nutritionDatabase.getAllNutritions();
+
+        LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.nutritionLayout);
+
+        for (Nutrition n : nutritions) {
+            if (n.getOwner().equals(onlineUser.getName())) {
+                String nutritionString = "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs();
+
+                TextView textView = new TextView(this);
+                textView.setText(nutritionString);
+                mLinearLayout.addView(textView);
+                showNone = false;
+            }
+        }
+
+        if(showNone){
+            TextView textView = new TextView(this);
+            textView.setText("You have not logged any form of nutrition for this date. Click 'Log Nutrition' below to enter this dates information.");
+            mLinearLayout.addView(textView);
+        }
+    }
 
 
 }

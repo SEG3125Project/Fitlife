@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -219,7 +220,6 @@ public class LogExercise extends AppCompatActivity {
         Exercise exercise;
 
         String name, isCardio, time, weight, sets, reps, user, date;
-//        System.out.println(listOLists.toString());
         for(int i = 0; i < listOLists.size(); i++){
             name = listOLists.get(i).get(0).getText().toString();
             weight = listOLists.get(i).get(1).getText().toString();
@@ -236,6 +236,7 @@ public class LogExercise extends AppCompatActivity {
             exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
             exerciseDatabase.addExercise(exercise);
 
+            Toast.makeText(getApplicationContext(), "Exercise logged", Toast.LENGTH_LONG).show();
 
 
         }

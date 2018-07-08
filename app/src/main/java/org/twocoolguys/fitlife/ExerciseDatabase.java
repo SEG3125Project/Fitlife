@@ -35,7 +35,7 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
     //Creates both tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_EXERCISES_TABLE = "CREATE TABLE " + TABLE_EXERCISES + " ("+COLUMN_EXERCISES+" TEXT PRIMARY KEY, " +
+        String CREATE_EXERCISES_TABLE = "CREATE TABLE " + TABLE_EXERCISES + " ("+COLUMN_EXERCISES+" TEXT, " +
                 COLUMN_ISCARDIO + " TEXT, " + COLUMN_TIME + " TEXT, " +
                 COLUMN_WEIGHT + " TEXT, " + COLUMN_SETS + " TEXT, " + COLUMN_REPS + " TEXT, " +
                 COLUMN_USER + " TEXT, " + COLUMN_DATE + " TEXT " + ")";
