@@ -217,16 +217,36 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/submitExerciseButton"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/buttonshape"
-                android:onClick="addExerciseToDB"
-                android:text="@string/submit"
-                android:textColor="@color/white" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <Button
+                    android:id="@+id/cancelExerciseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/buttonshape"
+                    android:text="Cancel"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/submitExerciseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/buttonshape"
+                    android:onClick="addExerciseToDB"
+                    android:text="@string/submit"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

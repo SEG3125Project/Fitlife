@@ -52,6 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
+                        android:hint="1800"
                         android:inputType="numberDecimal" />
 
                 </LinearLayout>
@@ -75,6 +76,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
+                        android:hint="80"
                         android:inputType="numberDecimal" />
                 </LinearLayout>
 
@@ -96,6 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
+                        android:hint="44"
                         android:inputType="numberDecimal" />
                 </LinearLayout>
 
@@ -117,21 +120,44 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
+                        android:hint="160"
                         android:inputType="numberDecimal" />
                 </LinearLayout>
             </LinearLayout>
 
 
-            <Button
-                android:id="@+id/submitNutritionButton"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/buttonshape"
-                android:onClick="submitOnClick"
-                android:text="@string/submit"
-                android:textColor="@color/white" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <Button
+                    android:id="@+id/cancelNutritionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonshape"
+                    android:onClick="submitOnClick"
+                    android:text="Cancel"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/submitNutritionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonshape"
+                    android:onClick="submitOnClick"
+                    android:text="@string/submit"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

@@ -52,7 +52,13 @@ public class LogExercise extends AppCompatActivity {
         navigationView.setItemIconTintList(null);
 
 
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        Button cancelButton = (Button) findViewById(R.id.cancelExerciseButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LogExercise.this, Calendar.class));
+            }
+        });
 
 
         singleList = new ArrayList<EditText>();
