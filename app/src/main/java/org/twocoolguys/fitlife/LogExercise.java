@@ -34,6 +34,7 @@ public class LogExercise extends AppCompatActivity {
     ExerciseDatabase exerciseDatabase;
     User onlineUser;
     String s;
+    String date;
 
     ArrayList<ArrayList<EditText>> listOLists = new ArrayList<ArrayList<EditText>>();
     ArrayList<EditText> singleList = new ArrayList<EditText>();
@@ -66,10 +67,14 @@ public class LogExercise extends AppCompatActivity {
         singleList.add((EditText) findViewById(R.id.weightEditText));
         singleList.add((EditText) findViewById(R.id.setsEditText));
         singleList.add((EditText) findViewById(R.id.repsEditText));
+        singleList.add((EditText) findViewById(R.id.cardioEditText));
+        singleList.add((EditText) findViewById(R.id.timeEditText));
 
         listOLists.add(singleList);
 
-
+        Intent i = getIntent();
+        date = i.getStringExtra("date");
+//        Log.d("DATE: ", date);
 
         SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
         s = sessionDetails.getString("sessionUsername", null);
@@ -225,19 +230,20 @@ public class LogExercise extends AppCompatActivity {
 
         Exercise exercise;
 
-        String name, isCardio, time, weight, sets, reps, user, date;
+        String name, isCardio, time, weight, sets, reps, user;
         for(int i = 0; i < listOLists.size(); i++){
             name = listOLists.get(i).get(0).getText().toString();
             weight = listOLists.get(i).get(1).getText().toString();
             sets = listOLists.get(i).get(2).getText().toString();
             reps = listOLists.get(i).get(3).getText().toString();
-            isCardio = "false";
-            time = "N/A";
+            isCardio = listOLists.get(i).get(4).getText().toString();
+            time = listOLists.get(i).get(5).getText().toString();
             user = s;
+            if(i != 0){
+                isCardio = "";
+                time = "";
+            }
 
-            date = "NOT DONE YET";
-
-            Log.d("USER", user);
 
             exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
             exerciseDatabase.addExercise(exercise);

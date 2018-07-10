@@ -178,11 +178,12 @@ public class Calendar extends AppCompatActivity {
         LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.exerciseLayout);
 
         for (Exercise e : exercises) {
-            if (e.getOwner().equals(onlineUser.getName())) {
+            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date)) {
                 String exerciseString = "\n Exercise: " + e.getName() + "\n Weight: " + e.getWeight() + "\n Sets: " + e.getSets() + "\n Reps: " + e.getReps();
+                String cardioString = "\n Cardio: " + e.getIsCardio();
 
                 TextView textView = new TextView(this);
-                textView.setText(exerciseString);
+                textView.setText(exerciseString + cardioString);
                 mLinearLayout.addView(textView);
                 showNone = false;
             }
@@ -204,7 +205,7 @@ public class Calendar extends AppCompatActivity {
         LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.nutritionLayout);
 
         for (Nutrition n : nutritions) {
-            if (n.getOwner().equals(onlineUser.getName())) {
+            if (n.getOwner().equals(onlineUser.getName()) && n.getDate().equals(date)) {
                 String nutritionString = "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs();
 
                 TextView textView = new TextView(this);
