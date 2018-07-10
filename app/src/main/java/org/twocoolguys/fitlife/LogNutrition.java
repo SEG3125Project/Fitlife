@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LogNutrition extends AppCompatActivity {
 
@@ -104,5 +105,10 @@ public class LogNutrition extends AppCompatActivity {
         Nutrition nutrition = new Nutrition(calories, fats, protein, carbs, date, onlineUser.getName());
 
         nutritionDatabase.addNutrition(nutrition);
+
+        Toast.makeText(getApplicationContext(), "Nutrition logged", Toast.LENGTH_LONG).show();
+
+        Intent i = new Intent(LogNutrition.this, Calendar.class);
+        startActivity(i);
     }
 }

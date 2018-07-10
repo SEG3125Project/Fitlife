@@ -180,7 +180,7 @@ public class Calendar extends AppCompatActivity {
         for (Exercise e : exercises) {
             if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date)) {
                 String exerciseString = "\n Exercise: " + e.getName() + "\n Weight: " + e.getWeight() + "\n Sets: " + e.getSets() + "\n Reps: " + e.getReps();
-                String cardioString = "\n Cardio: " + e.getIsCardio();
+                String cardioString = "\n Cardio: " + e.getIsCardio() + "\n Time: " + e.getTime();
 
                 TextView textView = new TextView(this);
                 textView.setText(exerciseString + cardioString);

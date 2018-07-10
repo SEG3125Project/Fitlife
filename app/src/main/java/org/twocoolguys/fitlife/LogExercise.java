@@ -74,7 +74,7 @@ public class LogExercise extends AppCompatActivity {
 
         Intent i = getIntent();
         date = i.getStringExtra("date");
-//        Log.d("DATE: ", date);
+        Log.d("DATE: ", date);
 
         SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
         s = sessionDetails.getString("sessionUsername", null);
@@ -249,6 +249,9 @@ public class LogExercise extends AppCompatActivity {
             exerciseDatabase.addExercise(exercise);
 
             Toast.makeText(getApplicationContext(), "Exercise logged", Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(LogExercise.this, Calendar.class);
+            startActivity(intent);
 
 
         }
