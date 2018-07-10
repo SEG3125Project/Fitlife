@@ -86,3 +86,4 @@ public class Exercise {
         this.date = date;
     }
 }
+
