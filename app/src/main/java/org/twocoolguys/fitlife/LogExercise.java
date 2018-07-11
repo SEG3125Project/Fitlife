@@ -7,6 +7,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,12 +26,21 @@ import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LogExercise extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigationView;
+
+    EditText exerciseEditTextOrig;
+    EditText weightEditTextOrig;
+    EditText setsEditTextOrig;
+    EditText repsEditTextOrig;
+    EditText cardioEditTextOrig;
+    EditText timeEditTextOrig;
 
     int count;
     int groupCount = 10;
@@ -35,6 +49,7 @@ public class LogExercise extends AppCompatActivity {
     User onlineUser;
     String s;
     String date;
+
 
     ArrayList<ArrayList<EditText>> listOLists = new ArrayList<ArrayList<EditText>>();
     ArrayList<EditText> singleList = new ArrayList<EditText>();
@@ -52,6 +67,13 @@ public class LogExercise extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav);
         navigationView.setItemIconTintList(null);
 
+        exerciseEditTextOrig = (EditText) findViewById(R.id.exerciseEditText);
+        weightEditTextOrig = (EditText) findViewById(R.id.weightEditText);
+        setsEditTextOrig = (EditText) findViewById(R.id.setsEditText);
+        repsEditTextOrig = (EditText) findViewById(R.id.repsEditText);
+        cardioEditTextOrig = (EditText) findViewById(R.id.cardioEditText);
+        timeEditTextOrig = (EditText) findViewById(R.id.timeEditText);
+
 
         Button cancelButton = (Button) findViewById(R.id.cancelExerciseButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -63,12 +85,12 @@ public class LogExercise extends AppCompatActivity {
 
 
         singleList = new ArrayList<EditText>();
-        singleList.add((EditText) findViewById(R.id.exerciseEditText));
-        singleList.add((EditText) findViewById(R.id.weightEditText));
-        singleList.add((EditText) findViewById(R.id.setsEditText));
-        singleList.add((EditText) findViewById(R.id.repsEditText));
-        singleList.add((EditText) findViewById(R.id.cardioEditText));
-        singleList.add((EditText) findViewById(R.id.timeEditText));
+        singleList.add(exerciseEditTextOrig);
+        singleList.add(weightEditTextOrig);
+        singleList.add(setsEditTextOrig);
+        singleList.add(repsEditTextOrig);
+        singleList.add(cardioEditTextOrig);
+        singleList.add(timeEditTextOrig);
 
         listOLists.add(singleList);
 
@@ -105,7 +127,60 @@ public class LogExercise extends AppCompatActivity {
                 return true;
             }
         });
+
+        exerciseEditTextOrig.setInputType(InputType.TYPE_CLASS_TEXT);
+        weightEditTextOrig.setInputType(InputType.TYPE_CLASS_NUMBER);
+        setsEditTextOrig.setInputType(InputType.TYPE_CLASS_NUMBER);
+        repsEditTextOrig.setInputType(InputType.TYPE_CLASS_NUMBER);
+        cardioEditTextOrig.setInputType(InputType.TYPE_CLASS_TEXT);
+        timeEditTextOrig.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        exerciseEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12), justTextFilter()});
+        weightEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+        setsEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
+        repsEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
+        cardioEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12), justTextFilter()});
+        timeEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+
     }
+
+    public static InputFilter justTextFilter() {
+        return new InputFilter() {
+
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+
+                boolean keepOriginal = true;
+                StringBuilder sb = new StringBuilder(end - start);
+                for (int i = start; i < end; i++) {
+                    char c = source.charAt(i);
+                    if (isCharAllowed(c)) //  condition
+                        sb.append(c);
+                    else
+                        keepOriginal = false;
+                }
+                if (keepOriginal)
+                    return null;
+                else {
+                    if (source instanceof Spanned) {
+                        SpannableString sp = new SpannableString(sb);
+                        TextUtils.copySpansFrom((Spanned) source, start, sb.length(), null, sp, 0);
+                        return sp;
+                    } else {
+                        return sb;
+                    }
+                }
+            }
+
+            private boolean isCharAllowed(char c) {
+                Pattern ps = Pattern.compile("^[a-zA-Z ]+$");
+                Matcher ms = ps.matcher(String.valueOf(c));
+                return ms.matches();
+            }
+        };
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -169,16 +244,25 @@ public class LogExercise extends AppCompatActivity {
 
         count = 0;
 
+
         exerciseEditText.setText("Exercise");
         exerciseEditText.setId(count++ + groupCount);
+        exerciseEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+        exerciseEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12), justTextFilter()});
 //        System.out.println(count);
         weightEditText.setText("Weight (lbs)");
+        weightEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        weightEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
         weightEditText.setId(count++ + groupCount);
 //        System.out.println(count);
         setsEditText.setText("Sets");
+        setsEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        setsEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
         setsEditText.setId(count++ + groupCount);
 //        System.out.println(count);
         repsEditText.setText("Reps");
+        repsEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        repsEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
         repsEditText.setId(count++ + groupCount);
 //        System.out.println(count);
 //        System.out.println(groupCount);
@@ -233,14 +317,23 @@ public class LogExercise extends AppCompatActivity {
         Exercise exercise;
 
         String name, isCardio, time, weight, sets, reps, user;
+
+        isCardio = listOLists.get(0).get(4).getText().toString();
+        Log.e("TAG","DON'T LIKE CARDIO");
+        time = listOLists.get(0).get(5).getText().toString();
+        Log.e("TAG","TIME IS SICK");
+
         for(int i = 0; i < listOLists.size(); i++){
             name = listOLists.get(i).get(0).getText().toString();
+            Log.e("TAG","NAME SICK");
             weight = listOLists.get(i).get(1).getText().toString();
+            Log.e("TAG","WEIGHT SICK");
             sets = listOLists.get(i).get(2).getText().toString();
+            Log.e("TAG","SETS SICK");
             reps = listOLists.get(i).get(3).getText().toString();
-            isCardio = listOLists.get(i).get(4).getText().toString();
-            time = listOLists.get(i).get(5).getText().toString();
+            Log.e("TAG","REPS SICK");
             user = s;
+
             if(i != 0){
                 isCardio = "";
                 time = "";
