@@ -44,10 +44,10 @@ public class LogNutrition extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav);
         navigationView.setItemIconTintList(null);
 
-        EditText caloriesEditText = (EditText) findViewById(R.id.caloriesEditText);
-        EditText proteinEditText = (EditText) findViewById(R.id.proteinEditText);
-        EditText fatsEditText = (EditText) findViewById(R.id.fatsEditText);
-        EditText carbsEditText = (EditText) findViewById(R.id.carbsEditText);
+        caloriesEditText = (EditText) findViewById(R.id.caloriesEditText);
+        proteinEditText = (EditText) findViewById(R.id.proteinEditText);
+        fatsEditText = (EditText) findViewById(R.id.fatsEditText);
+        carbsEditText = (EditText) findViewById(R.id.carbsEditText);
 
 
         Button cancelButton = (Button) findViewById(R.id.cancelNutritionButton);
@@ -91,34 +91,34 @@ public class LogNutrition extends AppCompatActivity {
             }
         });
 
-        InputFilter filter = new InputFilter() {
-            final int maxDigitsBeforeDecimalPoint=3;
-            final int maxDigitsAfterDecimalPoint=1;
-
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end,
-                                       Spanned dest, int dstart, int dend) {
-                StringBuilder builder = new StringBuilder(dest);
-                builder.replace(dstart, dend, source
-                        .subSequence(start, end).toString());
-                if (!builder.toString().matches(
-                        "(([1-9]{1})([0-9]{0,"+(maxDigitsBeforeDecimalPoint-1)+"})?)?(\\.[0-9]{0,"+maxDigitsAfterDecimalPoint+"})?"
-
-                )) {
-                    if(source.length()==0)
-                        return dest.subSequence(dstart, dend);
-                    return "";
-                }
-
-                return null;
-
-            }
-        };
-
         proteinEditText.setFilters(new InputFilter[] { filter });
         fatsEditText.setFilters(new InputFilter[] {filter});
         carbsEditText.setFilters(new InputFilter[] {filter});
     }
+
+    InputFilter filter = new InputFilter() {
+        final int maxDigitsBeforeDecimalPoint=3;
+        final int maxDigitsAfterDecimalPoint=1;
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end,
+                                   Spanned dest, int dstart, int dend) {
+            StringBuilder builder = new StringBuilder(dest);
+            builder.replace(dstart, dend, source
+                    .subSequence(start, end).toString());
+            if (!builder.toString().matches(
+                    "(([1-9]{1})([0-9]{0,"+(maxDigitsBeforeDecimalPoint-1)+"})?)?(\\.[0-9]{0,"+maxDigitsAfterDecimalPoint+"})?"
+
+            )) {
+                if(source.length()==0)
+                    return dest.subSequence(dstart, dend);
+                return "";
+            }
+
+            return null;
+
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

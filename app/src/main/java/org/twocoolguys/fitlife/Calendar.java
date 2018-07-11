@@ -177,8 +177,11 @@ public class Calendar extends AppCompatActivity {
 
         LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.exerciseLayout);
 
+        Log.e("TAG","NOT CRASHED YET");
         for (Exercise e : exercises) {
-            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date)) {
+            Log.e("TAG","STILL NOT YET");
+            if (e.getOwner() != null && (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date))) {
+                Log.e("TAG","DARN IT");
                 String exerciseString = "\n Exercise: " + e.getName() + "\n Weight: " + e.getWeight() + "\n Sets: " + e.getSets() + "\n Reps: " + e.getReps();
                 String cardioString = "\n Cardio: " + e.getIsCardio() + "\n Time: " + e.getTime();
 
