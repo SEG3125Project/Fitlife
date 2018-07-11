@@ -162,6 +162,8 @@ public class LogExercise extends AppCompatActivity {
         singleList.add(weightEditText);
         singleList.add(setsEditText);
         singleList.add(repsEditText);
+        singleList.add((EditText) findViewById(R.id.cardioEditText));
+        singleList.add((EditText) findViewById(R.id.timeEditText));
 
         listOLists.add(singleList);
 

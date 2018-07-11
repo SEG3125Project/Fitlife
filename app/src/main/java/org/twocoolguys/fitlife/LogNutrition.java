@@ -44,10 +44,10 @@ public class LogNutrition extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav);
         navigationView.setItemIconTintList(null);
 
-        EditText caloriesEditText = (EditText) findViewById(R.id.caloriesEditText);
-        EditText proteinEditText = (EditText) findViewById(R.id.proteinEditText);
-        EditText fatsEditText = (EditText) findViewById(R.id.fatsEditText);
-        EditText carbsEditText = (EditText) findViewById(R.id.carbsEditText);
+        caloriesEditText = (EditText) findViewById(R.id.caloriesEditText);
+        proteinEditText = (EditText) findViewById(R.id.proteinEditText);
+        fatsEditText = (EditText) findViewById(R.id.fatsEditText);
+        carbsEditText = (EditText) findViewById(R.id.carbsEditText);
 
 
         Button cancelButton = (Button) findViewById(R.id.cancelNutritionButton);

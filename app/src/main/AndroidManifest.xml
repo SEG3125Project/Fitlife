@@ -11,23 +11,23 @@
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity">
 
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
 
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
         <activity android:name=".LogExercise">
 
-             <!--<intent-filter>-->
-             <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
 
-             <!--<category android:name="android.intent.category.LAUNCHER" />-->
-             <!--</intent-filter>-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".Routine">
 
@@ -44,12 +44,12 @@
         <activity android:name=".Arms" />
         <activity android:name=".Core" />
         <activity android:name=".Calendar">
-             <!--<intent-filter>-->
-             <!--<action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
 
-             <!--<category android:name="android.intent.category.LAUNCHER" />-->
-             <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".LogNutrition">
             <!--<intent-filter>
@@ -58,7 +58,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".PopupCalendar"
+        <activity
+            android:name=".PopupCalendar"
             android:theme="@style/AppTheme.PopupTheme"></activity>
     </application>
 

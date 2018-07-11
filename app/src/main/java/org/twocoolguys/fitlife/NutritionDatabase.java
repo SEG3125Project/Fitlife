@@ -98,20 +98,32 @@ public class NutritionDatabase extends SQLiteOpenHelper {
         db.close();
         return newnutritionList;
     }
-//    public boolean deleteNutrition(String nutritionName){
-//        boolean result = false;
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        String query = "Select * FROM " + TABLE_NUTRITIONS + " WHERE " + COLUMN_CALORIES + " = \"" + nutritionName + "\"";
-//        Cursor cursor = db.rawQuery(query, null);
-//        if (cursor.moveToFirst()){
-//            String[] name = {nutritionName};
-//            db.delete(TABLE_NUTRITIONS, COLUMN_CALORIES + "=?", name);
-//            cursor.close();
-//            result = true;
-//        }
-//        db.close();
-//        return result;
-//    }
+    public boolean deleteNutrition(String calories, String fats, String protein, String carbs, String date, String owner){
+        boolean result = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "Select * FROM " + TABLE_NUTRITIONS + " WHERE " + COLUMN_CALORIES + " = \"" + calories + "\"";
+        Cursor cursor = db.rawQuery(query, null);
+        Log.d("TEST","test0");
+
+        if (cursor.moveToFirst()){
+            Log.d("TEST","test1");
+
+            String[] name = {calories, fats, protein, carbs, date, owner};
+            db.delete(TABLE_NUTRITIONS,
+                    COLUMN_CALORIES + "=? AND " +
+                    COLUMN_FATS + "=? AND " +
+                    COLUMN_PROTEIN + "=? AND " +
+                    COLUMN_CARBS + "=? AND " +
+                    COLUMN_DATE + "=? AND " +
+                    COLUMN_OWNER + "=?" ,
+                    name);
+            Log.d("TEST","test");
+            cursor.close();
+            result = true;
+        }
+        db.close();
+        return result;
+    }
 //    public void updateNutrition(Nutrition nutrition) {
 //        //follows same pattern as updateUser in UserDatabase, see function there
 //        SQLiteDatabase db = this.getWritableDatabase();

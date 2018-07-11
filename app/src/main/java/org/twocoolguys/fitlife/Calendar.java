@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -177,14 +179,41 @@ public class Calendar extends AppCompatActivity {
 
         LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.exerciseLayout);
 
-        for (Exercise e : exercises) {
+
+        for (final Exercise e : exercises) {
             if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date)) {
+
+                LinearLayout horizontal = new LinearLayout(this);
+                horizontal.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+                );
+                horizontal.setLayoutParams(params);
                 String exerciseString = "\n Exercise: " + e.getName() + "\n Weight: " + e.getWeight() + "\n Sets: " + e.getSets() + "\n Reps: " + e.getReps();
-                String cardioString = "\n Cardio: " + e.getIsCardio() + "\n Time: " + e.getTime();
+//                String cardioString = "\n Cardio: " + e.getIsCardio() + "\n Time: " + e.getTime();
+                Button delete = new Button(this);
+//                delete.setBackground();
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        exerciseDatabase.deleteExercise(e.getName(), e.getIsCardio(), e.getTime(), e.getWeight(), e.getSets(), e.getReps(), e.getOwner(), e.getDate());
+                        Toast.makeText(getApplicationContext(), "Exercise Deleted.", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                paramsButton.weight = 1.0f;
+                paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+                delete.setLayoutParams(paramsButton);
+
+
 
                 TextView textView = new TextView(this);
-                textView.setText(exerciseString + cardioString);
-                mLinearLayout.addView(textView);
+                textView.setText(exerciseString);
+                horizontal.addView(textView);
+                horizontal.addView(delete);
+                mLinearLayout.addView(horizontal);
                 showNone = false;
             }
         }
@@ -204,13 +233,44 @@ public class Calendar extends AppCompatActivity {
 
         LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.nutritionLayout);
 
-        for (Nutrition n : nutritions) {
+        for (final Nutrition n : nutritions) {
             if (n.getOwner().equals(onlineUser.getName()) && n.getDate().equals(date)) {
+
+                LinearLayout horizontal = new LinearLayout(this);
+                horizontal.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+                );
+                horizontal.setLayoutParams(params);
+
                 String nutritionString = "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs();
+
+                Button delete = new Button(this);
+//                delete.setBackground();
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+//                        Log.d("NUTRITION", n.getCalories());
+                        Log.d("Nutrition", "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs());
+                        boolean deleted = nutritionDatabase.deleteNutrition(n.getCalories(), n.getFats(), n.getProtein(), n.getCarbs(), n.getDate(), n.getOwner());
+                        if(deleted) {
+                            Toast.makeText(getApplicationContext(), "Nutrition Deleted.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+                LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                paramsButton.weight = 1.0f;
+                paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+                delete.setLayoutParams(paramsButton);
+
 
                 TextView textView = new TextView(this);
                 textView.setText(nutritionString);
-                mLinearLayout.addView(textView);
+                horizontal.addView(textView);
+                horizontal.addView(delete);
+                mLinearLayout.addView(horizontal);
                 showNone = false;
             }
         }

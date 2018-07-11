@@ -103,14 +103,24 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
         db.close();
         return newexerciseList;
     }
-    public boolean deleteExercise(String exerciseName){
+    public boolean deleteExercise(String name, String isCardio, String time, String weight, String sets, String reps, String owner, String date){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * FROM " + TABLE_EXERCISES + " WHERE " + COLUMN_EXERCISES + " = \"" + exerciseName + "\"";
+        String query = "Select * FROM " + TABLE_EXERCISES + " WHERE " + COLUMN_EXERCISES + " = \"" + name + "\"";
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()){
-            String[] name = {exerciseName};
-            db.delete(TABLE_EXERCISES, COLUMN_EXERCISES + "=?", name);
+            String[] name1 = {name, isCardio, time, weight, sets, reps, owner, date};
+            db.delete(TABLE_EXERCISES,
+                    COLUMN_EXERCISES + "=? AND " +
+                            COLUMN_ISCARDIO + "=? AND " +
+                            COLUMN_TIME + "=? AND " +
+                            COLUMN_WEIGHT + "=? AND " +
+                            COLUMN_SETS + "=? AND " +
+                            COLUMN_REPS + "=? AND " +
+                            COLUMN_USER + "=? AND " +
+                            COLUMN_DATE + "=?" ,
+                    name1);
+            Log.d("TEST","test");
             cursor.close();
             result = true;
         }
