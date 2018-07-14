@@ -60,7 +60,7 @@ public class Calendar extends AppCompatActivity {
         SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE);
         String s = sessionDetails.getString("sessionUsername", null);
         onlineUser = userDatabase.getUserByName(s);
-//        Log.d("TEST", onlineUser.getName());
+        Log.d("USER", onlineUser.getName());
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -77,13 +77,12 @@ public class Calendar extends AppCompatActivity {
                 Button logExerciseButton = (Button) mView.findViewById(R.id.logExercise);
                 Button logNutritionButton = (Button) mView.findViewById(R.id.logNutrition);
                 Button cancelButton = (Button) mView.findViewById(R.id.cancel);
-                //Chris testing
 
 
                 addExercises(mView, date);
+                addCardio(mView, date);
                 addNutritions(mView, date);
 
-                //Chris testing end
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show(); //create new dialog box with option to see current info for that day or to log exercises, nutrition
@@ -181,7 +180,7 @@ public class Calendar extends AppCompatActivity {
 
 
         for (final Exercise e : exercises) {
-            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date)) {
+            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getName().equals("") && !e.getWeight().equals("")) {
 
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
@@ -197,8 +196,17 @@ public class Calendar extends AppCompatActivity {
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        exerciseDatabase.deleteExercise(e.getName(), e.getIsCardio(), e.getTime(), e.getWeight(), e.getSets(), e.getReps(), e.getOwner(), e.getDate());
-                        Toast.makeText(getApplicationContext(), "Exercise Deleted.", Toast.LENGTH_LONG).show();
+                        if(!e.getIsCardio().equals("")){
+                            Exercise newExercise = new Exercise("", e.getIsCardio(), e.getTime(), "", "", "", e.getOwner(), e.getDate());
+                            exerciseDatabase.addExercise(newExercise);
+                        }
+
+                        boolean deleted = exerciseDatabase.deleteExercise(e.getName(), e.getIsCardio(), e.getTime(), e.getWeight(), e.getSets(), e.getReps(), e.getOwner(), e.getDate());
+                        if(deleted) {
+                            Toast.makeText(getApplicationContext(), "Exercise Deleted.", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(Calendar.this, Calendar.class);
+                            startActivity(i);
+                        }
                     }
                 });
 
@@ -207,7 +215,61 @@ public class Calendar extends AppCompatActivity {
                 paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
                 delete.setLayoutParams(paramsButton);
 
+                TextView textView = new TextView(this);
+                textView.setText(exerciseString);
+                horizontal.addView(textView);
+                horizontal.addView(delete);
+                mLinearLayout.addView(horizontal);
+                showNone = false;
+            }
+        }
 
+        if(showNone){
+            TextView textView = new TextView(this);
+            textView.setText("You have not logged any exercises for this date. Click 'Log Exercise' below to enter this dates information.");
+            mLinearLayout.addView(textView);
+        }
+    }
+    public void addCardio(View view, String date) {
+
+        boolean showNone = true;
+
+        Exercise[] exercises = exerciseDatabase.getAllExercises();
+
+        LinearLayout mLinearLayout = (LinearLayout) view.findViewById(R.id.cardioLayout);
+
+
+        for (final Exercise e : exercises) {
+            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getIsCardio().equals("")) {
+
+                LinearLayout horizontal = new LinearLayout(this);
+                horizontal.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
+                );
+                horizontal.setLayoutParams(params);
+                String exerciseString = "\n Name: " + e.getIsCardio() + "\n Time: " + e.getTime();
+                Button delete = new Button(this);
+//                delete.setBackground();
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Exercise newExercise = new Exercise(e.getName(), "", "", e.getWeight(), e.getSets(), e.getReps(), e.getOwner(), e.getDate());
+                        exerciseDatabase.addExercise(newExercise);
+                        boolean deleted = exerciseDatabase.deleteExercise(e.getName(), e.getIsCardio(), e.getTime(), e.getWeight(), e.getSets(), e.getReps(), e.getOwner(), e.getDate());
+                        if(deleted) {
+                            Toast.makeText(getApplicationContext(), "Cardio Deleted.", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(Calendar.this, Calendar.class);
+                            startActivity(i);
+                        }
+                    }
+                });
+
+                LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                paramsButton.weight = 1.0f;
+                paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+                delete.setLayoutParams(paramsButton);
 
                 TextView textView = new TextView(this);
                 textView.setText(exerciseString);
@@ -252,10 +314,12 @@ public class Calendar extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 //                        Log.d("NUTRITION", n.getCalories());
-                        Log.d("Nutrition", "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs());
+                        Log.d("Nutrition", "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs() + "\n Date: " + n.getDate() + " \n Owner: " + n.getOwner());
                         boolean deleted = nutritionDatabase.deleteNutrition(n.getCalories(), n.getFats(), n.getProtein(), n.getCarbs(), n.getDate(), n.getOwner());
                         if(deleted) {
                             Toast.makeText(getApplicationContext(), "Nutrition Deleted.", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(Calendar.this, Calendar.class);
+                            startActivity(i);
                         }
                     }
                 });

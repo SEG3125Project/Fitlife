@@ -98,32 +98,66 @@ public class NutritionDatabase extends SQLiteOpenHelper {
         db.close();
         return newnutritionList;
     }
+//    public boolean deleteNutrition(String calories, String fats, String protein, String carbs, String date, String owner){
+//        boolean result = false;
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String query = "Select * FROM " + TABLE_NUTRITIONS + " WHERE " + COLUMN_CARBS + " = \"" + carbs + "\"";
+//        Cursor cursor = db.rawQuery(query, null);
+//        Log.e("TEST","test0");
+//
+//        if (cursor.moveToFirst()){
+//            Log.e("TEST","test1");
+//
+//            String[] name = {carbs, fats, calories, protein, date, owner};
+//            int deleteRow = db.delete(TABLE_NUTRITIONS,
+//                    COLUMN_CARBS + "=? AND " +
+//                            COLUMN_FATS + "=? AND " +
+//                            COLUMN_CALORIES + "=? AND " +
+//                            COLUMN_PROTEIN + "=? AND " +
+//                            COLUMN_DATE + "=? AND " +
+//                            COLUMN_OWNER + "=?" ,
+//                    name);
+//            cursor.close();
+//            if(deleteRow > 0) {
+//                result = true;
+//                Log.e("TEST","test");
+//            }
+//
+//
+//        }
+//        db.close();
+//        return result;
+//    }
+
     public boolean deleteNutrition(String calories, String fats, String protein, String carbs, String date, String owner){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * FROM " + TABLE_NUTRITIONS + " WHERE " + COLUMN_CALORIES + " = \"" + calories + "\"";
+        String query = "Select * FROM " + TABLE_NUTRITIONS + " WHERE " + COLUMN_CARBS + " = \"" + carbs + "\"";
         Cursor cursor = db.rawQuery(query, null);
-        Log.d("TEST","test0");
+        Log.e("TEST","test0");
 
         if (cursor.moveToFirst()){
-            Log.d("TEST","test1");
+            Log.e("TEST","test1");
 
-            String[] name = {fats, calories, protein, carbs, date, owner};
+            String[] name = {carbs, fats, calories, protein, date, owner};
             db.delete(TABLE_NUTRITIONS,
-                    COLUMN_FATS + "=? AND " +
+                    COLUMN_CARBS + "=? AND " +
+                            COLUMN_FATS + "=? AND " +
                             COLUMN_CALORIES + "=? AND " +
                             COLUMN_PROTEIN + "=? AND " +
-                            COLUMN_CARBS + "=? AND " +
                             COLUMN_DATE + "=? AND " +
-                            COLUMN_OWNER + "=?" ,
+                            COLUMN_OWNER + "=?",
                     name);
-            Log.d("TEST","test");
             cursor.close();
-            result = true;
+//            if(deleteRow > 0) {
+                result = true;
+                Log.e("TEST","test");
+//            }
         }
         db.close();
         return result;
     }
+
 //    public void updateNutrition(Nutrition nutrition) {
 //        //follows same pattern as updateUser in UserDatabase, see function there
 //        SQLiteDatabase db = this.getWritableDatabase();

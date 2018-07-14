@@ -60,6 +60,22 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/cardioLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cardioTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Cardio"
+                    android:textAlignment="center"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/nutritionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
