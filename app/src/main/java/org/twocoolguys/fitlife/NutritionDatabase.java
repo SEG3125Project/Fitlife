@@ -108,14 +108,14 @@ public class NutritionDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()){
             Log.d("TEST","test1");
 
-            String[] name = {calories, fats, protein, carbs, date, owner};
+            String[] name = {fats, calories, protein, carbs, date, owner};
             db.delete(TABLE_NUTRITIONS,
-                    COLUMN_CALORIES + "=? AND " +
                     COLUMN_FATS + "=? AND " +
-                    COLUMN_PROTEIN + "=? AND " +
-                    COLUMN_CARBS + "=? AND " +
-                    COLUMN_DATE + "=? AND " +
-                    COLUMN_OWNER + "=?" ,
+                            COLUMN_CALORIES + "=? AND " +
+                            COLUMN_PROTEIN + "=? AND " +
+                            COLUMN_CARBS + "=? AND " +
+                            COLUMN_DATE + "=? AND " +
+                            COLUMN_OWNER + "=?" ,
                     name);
             Log.d("TEST","test");
             cursor.close();
