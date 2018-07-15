@@ -35,6 +35,7 @@ public class Calendar extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigationView;
     private CalendarView calendarView;
+
     String date;
     UserDatabase userDatabase = new UserDatabase(this);
     ExerciseDatabase exerciseDatabase = new ExerciseDatabase(this);
@@ -54,6 +55,7 @@ public class Calendar extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav);
         navigationView.setItemIconTintList(null);
 
+
         calendarView = (CalendarView) findViewById(R.id.calendarView);
 
         //get online user
@@ -61,6 +63,11 @@ public class Calendar extends AppCompatActivity {
         String s = sessionDetails.getString("sessionUsername", null);
         onlineUser = userDatabase.getUserByName(s);
         Log.d("USER", onlineUser.getName());
+
+        Log.e("TEST", onlineUser.getName());
+
+
+        navigationView.getMenu().findItem(R.id.nav_account).setTitle("@" + onlineUser.getName()); //set the username on the navigation menu
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -180,7 +187,7 @@ public class Calendar extends AppCompatActivity {
 
 
         for (final Exercise e : exercises) {
-            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getName().equals("") && !e.getWeight().equals("")) {
+            if ((e.getOwner() != null) && ((e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getName().equals("") && !e.getWeight().equals("")))) {
 
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
@@ -245,7 +252,7 @@ public class Calendar extends AppCompatActivity {
 
 
         for (final Exercise e : exercises) {
-            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getIsCardio().equals("")) {
+            if ((e.getOwner() != null) && (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getIsCardio().equals(""))) {
 
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);

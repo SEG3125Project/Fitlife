@@ -51,12 +51,15 @@
                         android:layout_weight="1"
                         android:text="@string/exercise" />
 
-                    <EditText
-                        android:id="@+id/exerciseEditText"
+                    <AutoCompleteTextView
+                        android:id="@+id/exerciseAutoEditText"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:completionThreshold="2"
                         android:ems="10"
+                        android:dropDownWidth="215dp"
+                        android:dropDownHorizontalOffset="-30dp"
                         android:hint="Bench Press"
                         android:inputType="textPersonName" />
 
@@ -184,11 +187,14 @@
                         android:layout_weight="1"
                         android:text="@string/cardioName" />
 
-                    <EditText
-                        android:id="@+id/cardioEditText"
+                    <AutoCompleteTextView
+                        android:id="@+id/cardioAutoEditText"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:completionThreshold="2"
+                        android:dropDownWidth="215dp"
+                        android:dropDownHorizontalOffset="-30dp"
                         android:ems="10"
                         android:hint="Jogging"
                         android:inputType="textPersonName" />

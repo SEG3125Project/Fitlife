@@ -67,6 +67,8 @@ public class LogNutrition extends AppCompatActivity {
         userDatabase = new UserDatabase(this);
         onlineUser = userDatabase.getUserByName(session);
 
+        navigationView.getMenu().findItem(R.id.nav_account).setTitle("@" + onlineUser.getName()); //set the username on the navigation menu
+
         nutritionDatabase = new NutritionDatabase(this);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
