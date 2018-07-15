@@ -52,11 +52,11 @@
             <!--</intent-filter>-->
         </activity>
         <activity android:name=".LogNutrition">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--&lt;!&ndash;<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>&ndash;&gt;-->
         </activity>
         <activity
             android:name=".PopupCalendar"
