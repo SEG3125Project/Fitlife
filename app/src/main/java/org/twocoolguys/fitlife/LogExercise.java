@@ -312,6 +312,7 @@ public class LogExercise extends AppCompatActivity {
     }
 
     public void addExerciseToDB(View view){
+        boolean addToDB = true;
 
         Exercise exercise;
 
@@ -334,25 +335,38 @@ public class LogExercise extends AppCompatActivity {
 
             if(name.equals("")){
                 listOLists.get(i).get(0).setError("Field Empty");
+                addToDB = false;
             }
             if(weight.equals("")){
                 listOLists.get(i).get(1).setError("Field Empty");
+                addToDB = false;
             }
             if(sets.equals("")){
                 listOLists.get(i).get(2).setError("Field Empty");
+                addToDB = false;
             }
             if(reps.equals("")){
                 listOLists.get(i).get(3).setError("Field Empty");
+                addToDB = false;
             }
 
-            exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
-            exerciseDatabase.addExercise(exercise);
+            if(name.equals("") && name.equals("") && name.equals("") && name.equals("")){
+                if(isCardio.equals("") && time.equals("")){
+                    addToDB = false;
+                } else {
+                    addToDB = true;
+                }
+            }
 
-            Toast.makeText(getApplicationContext(), "Exercise logged", Toast.LENGTH_LONG).show();
+            if(addToDB){
+                exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
+                exerciseDatabase.addExercise(exercise);
 
-            Intent intent = new Intent(LogExercise.this, Calendar.class);
-            startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Exercise logged", Toast.LENGTH_LONG).show();
 
+                Intent intent = new Intent(LogExercise.this, Calendar.class);
+                startActivity(intent);
+            }
 
         }
 

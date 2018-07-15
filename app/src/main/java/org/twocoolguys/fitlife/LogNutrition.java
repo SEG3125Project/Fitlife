@@ -131,35 +131,39 @@ public class LogNutrition extends AppCompatActivity {
     }
 
     public void submitOnClick(View view){
-        boolean valid = false;
+        boolean valid = true;
 
         String calories = caloriesEditText.getText().toString();
         String protein = proteinEditText.getText().toString();
         String fats = fatsEditText.getText().toString();
         String carbs = carbsEditText.getText().toString();
 
-        if(!(calories.equals("") && protein.equals("") && fats.equals("") && carbs.equals(""))){
-            valid = true;
-        }
+//        if((calories.equals("") && protein.equals("") && fats.equals("") && carbs.equals(""))){
+//            valid = false;
+//        }
 
         if(calories.equals("")){
-
+            caloriesEditText.setError("Field Empty");
+            valid = false;
         }
         if(protein.equals("")){
-
+            proteinEditText.setError("Field Empty");
+            valid = false;
         }
         if(fats.equals("")){
-
+            fatsEditText.setError("Field Empty");
+            valid = false;
         }
         if(carbs.equals("")){
-
+            carbsEditText.setError("Field Empty");
+            valid = false;
         }
 
-        Nutrition nutrition = new Nutrition(calories, fats, protein, carbs, date, onlineUser.getName());
-
-        nutritionDatabase.addNutrition(nutrition);
 
         if(valid) {
+            Nutrition nutrition = new Nutrition(calories, fats, protein, carbs, date, onlineUser.getName());
+            nutritionDatabase.addNutrition(nutrition);
+
             Toast.makeText(getApplicationContext(), "Nutrition logged", Toast.LENGTH_LONG).show();
 
             Intent i = new Intent(LogNutrition.this, Calendar.class);

@@ -305,6 +305,7 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT
                 );
                 horizontal.setLayoutParams(params);
+//                horizontal.setBackgroundColor(0xFF00FF00);
 
                 String nutritionString = "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs();
 
@@ -324,10 +325,14 @@ public class Calendar extends AppCompatActivity {
                     }
                 });
 
-                LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                paramsButton.weight = 1.0f;
+                LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
+//                paramsButton.weight = 1.0f;
                 paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
                 delete.setLayoutParams(paramsButton);
+                delete.setBackgroundResource(R.drawable.trash);
+                delete.setMinimumHeight(10);
+                delete.setMinimumWidth(10);
+
 
 
                 TextView textView = new TextView(this);
