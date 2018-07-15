@@ -35,6 +35,8 @@ public class Calendar extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigationView;
     private CalendarView calendarView;
+    private TextView navUserName;
+
     String date;
     UserDatabase userDatabase = new UserDatabase(this);
     ExerciseDatabase exerciseDatabase = new ExerciseDatabase(this);
@@ -54,6 +56,7 @@ public class Calendar extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav);
         navigationView.setItemIconTintList(null);
 
+
         calendarView = (CalendarView) findViewById(R.id.calendarView);
 
         //get online user
@@ -61,6 +64,11 @@ public class Calendar extends AppCompatActivity {
         String s = sessionDetails.getString("sessionUsername", null);
         onlineUser = userDatabase.getUserByName(s);
 //        Log.d("TEST", onlineUser.getName());
+
+        Log.e("TEST", onlineUser.getName());
+
+
+        navigationView.getMenu().findItem(R.id.nav_account).setTitle("@" + onlineUser.getName()); //set the username on the navigation menu
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

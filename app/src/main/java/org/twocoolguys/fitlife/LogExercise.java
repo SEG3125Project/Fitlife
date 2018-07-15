@@ -18,6 +18,8 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,12 +37,15 @@ public class LogExercise extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigationView;
 
-    EditText exerciseEditTextOrig;
+    AutoCompleteTextView exerciseAutoEditTextOrig;
     EditText weightEditTextOrig;
     EditText setsEditTextOrig;
     EditText repsEditTextOrig;
-    EditText cardioEditTextOrig;
+    AutoCompleteTextView cardioAutoEditTextOrig;
     EditText timeEditTextOrig;
+
+    private ArrayAdapter<String> adapterExercises;
+    private ArrayAdapter<String> adapterCardio;
 
     int count;
     int groupCount = 10;
@@ -67,13 +72,21 @@ public class LogExercise extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav);
         navigationView.setItemIconTintList(null);
 
-        exerciseEditTextOrig = (EditText) findViewById(R.id.exerciseEditText);
+
+        exerciseAutoEditTextOrig = (AutoCompleteTextView) findViewById(R.id.exerciseAutoEditText);
         weightEditTextOrig = (EditText) findViewById(R.id.weightEditText);
         setsEditTextOrig = (EditText) findViewById(R.id.setsEditText);
         repsEditTextOrig = (EditText) findViewById(R.id.repsEditText);
-        cardioEditTextOrig = (EditText) findViewById(R.id.cardioEditText);
+        cardioAutoEditTextOrig = (AutoCompleteTextView) findViewById(R.id.cardioAutoEditText);
         timeEditTextOrig = (EditText) findViewById(R.id.timeEditText);
 
+        String[] exerciseList = getResources().getStringArray(R.array.exercises_array); //initialize array of autocomplete exercise suggestions
+        adapterExercises = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, exerciseList);
+        exerciseAutoEditTextOrig.setAdapter(adapterExercises);
+
+        String[] cardioList = getResources().getStringArray(R.array.cardio_array); //initialize array of autocomplete cardio suggestions
+        adapterCardio = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cardioList);
+        cardioAutoEditTextOrig.setAdapter(adapterCardio);
 
         Button cancelButton = (Button) findViewById(R.id.cancelExerciseButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -85,11 +98,11 @@ public class LogExercise extends AppCompatActivity {
 
 
         singleList = new ArrayList<EditText>();
-        singleList.add(exerciseEditTextOrig);
+        singleList.add(exerciseAutoEditTextOrig);
         singleList.add(weightEditTextOrig);
         singleList.add(setsEditTextOrig);
         singleList.add(repsEditTextOrig);
-        singleList.add(cardioEditTextOrig);
+        singleList.add(cardioAutoEditTextOrig);
         singleList.add(timeEditTextOrig);
 
         listOLists.add(singleList);
@@ -128,18 +141,18 @@ public class LogExercise extends AppCompatActivity {
             }
         });
 
-        exerciseEditTextOrig.setInputType(InputType.TYPE_CLASS_TEXT);
+        exerciseAutoEditTextOrig.setInputType(InputType.TYPE_CLASS_TEXT);
         weightEditTextOrig.setInputType(InputType.TYPE_CLASS_NUMBER);
         setsEditTextOrig.setInputType(InputType.TYPE_CLASS_NUMBER);
         repsEditTextOrig.setInputType(InputType.TYPE_CLASS_NUMBER);
-        cardioEditTextOrig.setInputType(InputType.TYPE_CLASS_TEXT);
+        cardioAutoEditTextOrig.setInputType(InputType.TYPE_CLASS_TEXT);
         timeEditTextOrig.setInputType(InputType.TYPE_CLASS_NUMBER);
 
-        exerciseEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12), justTextFilter()});
+        exerciseAutoEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(24), justTextFilter()});
         weightEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
         setsEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
         repsEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
-        cardioEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12), justTextFilter()});
+        cardioAutoEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(24), justTextFilter()});
         timeEditTextOrig.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
 
     }
@@ -226,18 +239,18 @@ public class LogExercise extends AppCompatActivity {
 
 
 
-        EditText exerciseEditText = new EditText(this);
+        AutoCompleteTextView exerciseAutoEditText = new AutoCompleteTextView(this);
         EditText weightEditText = new EditText(this);
         EditText setsEditText = new EditText(this);
         EditText repsEditText = new EditText(this);
 
 
 
-        singleList.add(exerciseEditText);
+        singleList.add(exerciseAutoEditText);
         singleList.add(weightEditText);
         singleList.add(setsEditText);
         singleList.add(repsEditText);
-        singleList.add((EditText) findViewById(R.id.cardioEditText));
+        singleList.add((AutoCompleteTextView) findViewById(R.id.cardioAutoEditText));
         singleList.add((EditText) findViewById(R.id.timeEditText));
 
         listOLists.add(singleList);
@@ -245,10 +258,16 @@ public class LogExercise extends AppCompatActivity {
         count = 0;
 
 
-        exerciseEditText.setText("Exercise");
-        exerciseEditText.setId(count++ + groupCount);
-        exerciseEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-        exerciseEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(12), justTextFilter()});
+        exerciseAutoEditText.setText("Exercise");
+        exerciseAutoEditText.setId(count++ + groupCount);
+        exerciseAutoEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+        exerciseAutoEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(24), justTextFilter()});
+        exerciseAutoEditText.setAdapter(adapterExercises);
+
+        exerciseAutoEditText.setDropDownWidth(exerciseAutoEditTextOrig.getDropDownWidth());
+        exerciseAutoEditText.setDropDownHorizontalOffset(exerciseAutoEditTextOrig.getDropDownHorizontalOffset());
+
+
 //        System.out.println(count);
         weightEditText.setText("Weight (lbs)");
         weightEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -280,9 +299,9 @@ public class LogExercise extends AppCompatActivity {
         textView2.setWidth(px100);
         textView3.setWidth(px100);
         textView4.setWidth(px100);
-        exerciseEditText.setWidth(px150);
-        exerciseEditText.setHint("Bench Press");
-        exerciseEditText.setText("");
+        exerciseAutoEditText.setWidth(px150);
+        exerciseAutoEditText.setHint("Bench Press");
+        exerciseAutoEditText.setText("");
         weightEditText.setWidth(px150);
         weightEditText.setHint("315");
         weightEditText.setText("");
@@ -295,7 +314,7 @@ public class LogExercise extends AppCompatActivity {
 
 
         horizontal1.addView(textView1);
-        horizontal1.addView(exerciseEditText);
+        horizontal1.addView(exerciseAutoEditText);
         mLinearLayout.addView(horizontal1);
         horizontal2.addView(textView2);
         horizontal2.addView(weightEditText);
@@ -362,10 +381,10 @@ public class LogExercise extends AppCompatActivity {
         }
         LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
 
-//        EditText exerciseEditText = (EditText) findViewById(24);
+//        EditText exerciseAutoEditText = (EditText) findViewById(24);
 
 
-//        mLinearLayout.removeView(exerciseEditText);
+//        mLinearLayout.removeView(exerciseAutoEditText);
     }
 //    public void subtractNewExercise(View veiw){
 //
@@ -375,12 +394,12 @@ public class LogExercise extends AppCompatActivity {
 //        }
 //        LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
 //
-//        EditText exerciseEditText = (EditText) findViewById(groupCount + count - 4);
+//        EditText exerciseAutoEditText = (EditText) findViewById(groupCount + count - 4);
 //        EditText weightEditText = (EditText) findViewById(groupCount + count - 3);
 //        EditText setsEditText = (EditText) findViewById(groupCount + count - 2);
 //        EditText repsEditText = (EditText) findViewById(groupCount + count - 1);
 //
-//        mLinearLayout.removeView(exerciseEditText);
+//        mLinearLayout.removeView(exerciseAutoEditText);
 //        mLinearLayout.removeView(weightEditText);
 //        mLinearLayout.removeView(setsEditText);
 //        mLinearLayout.removeView(repsEditText);
@@ -389,6 +408,8 @@ public class LogExercise extends AppCompatActivity {
 //        groupCount -= 10;
 //        System.out.println("THE COUNT AFTER IS. COUNT:" + count + "GROUPCOUNT:" + groupCount);
 //    }
+
+
     public void getInformationWithIds(View view){
         int count2;
         for(int i = 0; i < count; i++){
