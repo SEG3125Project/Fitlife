@@ -1,6 +1,7 @@
 package org.twocoolguys.fitlife;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +21,9 @@ public class Legs extends AppCompatActivity {
     ImageView barbellSquat, dumbbellLunge, romanianDeadlift;
     Animation uptodown, downtoup, righttoleft, lefttoright;
 
+    UserDatabase userDatabase = new UserDatabase(this);
+    User onlineUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,12 @@ public class Legs extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = (NavigationView) findViewById(R.id.nav);
         navigationView.setItemIconTintList(null);
+
+        SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE); //get online user
+        String s = sessionDetails.getString("sessionUsername", null);
+        onlineUser = userDatabase.getUserByName(s);
+
+        navigationView.getMenu().findItem(R.id.nav_account).setTitle("@" + onlineUser.getName()); //set the username on the navigation menu
 
 
         barbellSquat = (ImageView)findViewById(R.id.barbell_squat);

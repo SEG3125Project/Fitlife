@@ -35,7 +35,6 @@ public class Calendar extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigationView;
     private CalendarView calendarView;
-    private TextView navUserName;
 
     String date;
     UserDatabase userDatabase = new UserDatabase(this);
@@ -188,7 +187,7 @@ public class Calendar extends AppCompatActivity {
 
 
         for (final Exercise e : exercises) {
-            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getName().equals("") && !e.getWeight().equals("")) {
+            if ((e.getOwner() != null) && ((e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getName().equals("") && !e.getWeight().equals("")))) {
 
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
@@ -249,7 +248,7 @@ public class Calendar extends AppCompatActivity {
 
 
         for (final Exercise e : exercises) {
-            if (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getIsCardio().equals("")) {
+            if ((e.getOwner() != null) && (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getIsCardio().equals(""))) {
 
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
