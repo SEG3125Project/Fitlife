@@ -116,7 +116,7 @@ public class LogExercise extends AppCompatActivity {
         userDatabase = new UserDatabase(this);
         onlineUser = userDatabase.getUserByName(s);
 
-        navigationView.getMenu().findItem(R.id.nav_account).setTitle("@" + onlineUser.getName()); //set the username on the navigation menu
+        navigationView.getMenu().findItem(R.id.nav_account).setTitle(onlineUser.getName() + " " + onlineUser.getLastName()); //set the username on the navigation menu
 
         exerciseDatabase = new ExerciseDatabase(this);
 

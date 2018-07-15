@@ -67,7 +67,7 @@ public class Calendar extends AppCompatActivity {
         Log.e("TEST", onlineUser.getName());
 
 
-        navigationView.getMenu().findItem(R.id.nav_account).setTitle("@" + onlineUser.getName()); //set the username on the navigation menu
+        navigationView.getMenu().findItem(R.id.nav_account).setTitle(onlineUser.getFirstName() + " " + onlineUser.getLastName()); //set the username on the navigation menu
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -189,6 +189,16 @@ public class Calendar extends AppCompatActivity {
         for (final Exercise e : exercises) {
             if ((e.getOwner() != null) && ((e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getName().equals("") && !e.getWeight().equals("")))) {
 
+
+                LinearLayout titleHorizontal = new LinearLayout(this);
+                titleHorizontal.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
+                titleHorizontal.setLayoutParams(titleParams);
+
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -196,7 +206,8 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT
                 );
                 horizontal.setLayoutParams(params);
-                String exerciseString = "\n Exercise: " + e.getName() + "\n Weight: " + e.getWeight() + "\n Sets: " + e.getSets() + "\n Reps: " + e.getReps();
+
+                String exerciseString = "    Weight: " + e.getWeight() + "\n    Sets: " + e.getSets() + "\n    Reps: " + e.getReps() + "\n";
 //                String cardioString = "\n Cardio: " + e.getIsCardio() + "\n Time: " + e.getTime();
                 Button delete = new Button(this);
 //                delete.setBackground();
@@ -220,17 +231,24 @@ public class Calendar extends AppCompatActivity {
                 LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
 //                paramsButton.weight = 1.0f;
                 paramsButton.gravity = Gravity.CENTER_VERTICAL;
-                paramsButton.gravity = Gravity.END;
+//                paramsButton.gravity = Gravity.END;
 
                 delete.setLayoutParams(paramsButton);
                 delete.setBackgroundResource(R.drawable.trash);
 
                 //layout_alignParentRight = true
 
+                TextView titleTextView = new TextView(this);
                 TextView textView = new TextView(this);
+
+                titleTextView.setText(e.getName());
                 textView.setText(exerciseString);
+
                 horizontal.addView(textView);
                 horizontal.addView(delete);
+                titleHorizontal.addView(titleTextView);
+
+                mLinearLayout.addView(titleHorizontal);
                 mLinearLayout.addView(horizontal);
                 showNone = false;
             }
@@ -261,7 +279,7 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT
                 );
                 horizontal.setLayoutParams(params);
-                String exerciseString = "\n Name: " + e.getIsCardio() + "\n Time: " + e.getTime();
+                String exerciseString = "    Name: " + e.getIsCardio() + "\n    Time: " + e.getTime();
                 Button delete = new Button(this);
 //                delete.setBackground();
                 delete.setOnClickListener(new View.OnClickListener() {
@@ -280,7 +298,7 @@ public class Calendar extends AppCompatActivity {
 
                 LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
 //                paramsButton.weight = 1.0f;
-                paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+                paramsButton.gravity = Gravity.CENTER_VERTICAL;
                 delete.setLayoutParams(paramsButton);
                 delete.setBackgroundResource(R.drawable.trash);
 
@@ -320,7 +338,7 @@ public class Calendar extends AppCompatActivity {
                 horizontal.setLayoutParams(params);
 //                horizontal.setBackgroundColor(0xFF00FF00);
 
-                String nutritionString = "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs();
+                String nutritionString = "    Calories: " + n.getCalories() + "\n    Fats: " + n.getFats() + "\n    Protein: " + n.getProtein() + "\n    Carbohydrates: " + n.getCarbs();
 
                 Button delete = new Button(this);
 //                delete.setBackground();
@@ -340,7 +358,7 @@ public class Calendar extends AppCompatActivity {
 
                 LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
 //                paramsButton.weight = 1.0f;
-                paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+                paramsButton.gravity = Gravity.CENTER_VERTICAL;
                 delete.setLayoutParams(paramsButton);
                 delete.setBackgroundResource(R.drawable.trash);
 
@@ -358,7 +376,7 @@ public class Calendar extends AppCompatActivity {
 
         if(showNone){
             TextView textView = new TextView(this);
-            textView.setText("You have not logged any form of nutrition for this date. Click 'Log Nutrition' below to enter this dates information.");
+            textView.setText("You have not logged any nutrition for this date. Click 'Log Nutrition' below to enter this dates information.");
             mLinearLayout.addView(textView);
         }
     }
