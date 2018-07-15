@@ -212,9 +212,13 @@ public class Calendar extends AppCompatActivity {
 
                 LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
 //                paramsButton.weight = 1.0f;
-                paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+                paramsButton.gravity = Gravity.CENTER_VERTICAL;
+                paramsButton.gravity = Gravity.END;
+
                 delete.setLayoutParams(paramsButton);
                 delete.setBackgroundResource(R.drawable.trash);
+
+                //layout_alignParentRight = true
 
                 TextView textView = new TextView(this);
                 textView.setText(exerciseString);
