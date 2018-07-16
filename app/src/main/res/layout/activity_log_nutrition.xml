@@ -41,14 +41,14 @@
 
                     <TextView
                         android:id="@+id/caloriesTitle"
-                        android:layout_width="100dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/Calories" />
 
                     <EditText
                         android:id="@+id/caloriesEditText"
-                        android:layout_width="150dp"
+                        android:layout_width="135dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:maxLength="4"
@@ -66,14 +66,14 @@
 
                     <TextView
                         android:id="@+id/proteinTitle"
-                        android:layout_width="100dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/Protein" />
 
                     <EditText
                         android:id="@+id/proteinEditText"
-                        android:layout_width="150dp"
+                        android:layout_width="135dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:maxLength="3"
@@ -89,14 +89,14 @@
 
                     <TextView
                         android:id="@+id/fatsTitle"
-                        android:layout_width="100dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/Fats" />
 
                     <EditText
                         android:id="@+id/fatsEditText"
-                        android:layout_width="150dp"
+                        android:layout_width="135dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
@@ -112,14 +112,14 @@
 
                     <TextView
                         android:id="@+id/carbsTitle"
-                        android:layout_width="100dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/Carbohydrates" />
 
                     <EditText
                         android:id="@+id/carbsEditText"
-                        android:layout_width="150dp"
+                        android:layout_width="135dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"

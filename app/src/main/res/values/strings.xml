@@ -23,9 +23,9 @@
 
     <string name="Nutrition">Nutrition</string>
     <string name="Calories">Calories</string>
-    <string name="Protein">Protein</string>
-    <string name="Fats">Fats</string>
-    <string name="Carbohydrates">Carbohydrates</string>
+    <string name="Protein">Protein (g)</string>
+    <string name="Fats">Fats (g)</string>
+    <string name="Carbohydrates">Carbohydrates (g)</string>
 
 
     <string name="login">Log in</string>

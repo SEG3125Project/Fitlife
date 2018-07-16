@@ -75,15 +75,15 @@ public class LogNutrition extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
-                    case(R.id.nav_calendar):
+                    case (R.id.nav_calendar):
                         Intent i = new Intent(getApplicationContext(), Calendar.class);
                         startActivity(i);
                         break;
-                    case(R.id.nav_exercises):
+                    case (R.id.nav_exercises):
                         i = new Intent(getApplicationContext(), Routine.class);
                         startActivity(i);
                         break;
-                    case(R.id.nav_logout):
+                    case (R.id.nav_logout):
                         i = new Intent(getApplicationContext(), WelcomeActivity.class);
                         startActivity(i);
                         break;
@@ -93,14 +93,14 @@ public class LogNutrition extends AppCompatActivity {
             }
         });
 
-        proteinEditText.setFilters(new InputFilter[] { filter });
-        fatsEditText.setFilters(new InputFilter[] {filter});
-        carbsEditText.setFilters(new InputFilter[] {filter});
+        proteinEditText.setFilters(new InputFilter[]{filter});
+        fatsEditText.setFilters(new InputFilter[]{filter});
+        carbsEditText.setFilters(new InputFilter[]{filter});
     }
 
     InputFilter filter = new InputFilter() {
-        final int maxDigitsBeforeDecimalPoint=3;
-        final int maxDigitsAfterDecimalPoint=1;
+        final int maxDigitsBeforeDecimalPoint = 3;
+        final int maxDigitsAfterDecimalPoint = 1;
 
         @Override
         public CharSequence filter(CharSequence source, int start, int end,
@@ -109,10 +109,10 @@ public class LogNutrition extends AppCompatActivity {
             builder.replace(dstart, dend, source
                     .subSequence(start, end).toString());
             if (!builder.toString().matches(
-                    "(([1-9]{1})([0-9]{0,"+(maxDigitsBeforeDecimalPoint-1)+"})?)?(\\.[0-9]{0,"+maxDigitsAfterDecimalPoint+"})?"
+                    "(([1-9]{1})([0-9]{0," + (maxDigitsBeforeDecimalPoint - 1) + "})?)?(\\.[0-9]{0," + maxDigitsAfterDecimalPoint + "})?"
 
             )) {
-                if(source.length()==0)
+                if (source.length() == 0)
                     return dest.subSequence(dstart, dend);
                 return "";
             }
@@ -125,14 +125,14 @@ public class LogNutrition extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void submitOnClick(View view){
+    public void submitOnClick(View view) {
         boolean valid = true;
 
         String calories = caloriesEditText.getText().toString();
@@ -140,29 +140,28 @@ public class LogNutrition extends AppCompatActivity {
         String fats = fatsEditText.getText().toString();
         String carbs = carbsEditText.getText().toString();
 
-//        if((calories.equals("") && protein.equals("") && fats.equals("") && carbs.equals(""))){
-//            valid = false;
-//        }
-
-        if(calories.equals("")){
-            caloriesEditText.setError("Field Empty");
-            valid = false;
-        }
-        if(protein.equals("")){
-            proteinEditText.setError("Field Empty");
-            valid = false;
-        }
-        if(fats.equals("")){
-            fatsEditText.setError("Field Empty");
-            valid = false;
-        }
-        if(carbs.equals("")){
-            carbsEditText.setError("Field Empty");
+        if((calories.equals("") && protein.equals("") && fats.equals("") && carbs.equals(""))){
+            Toast.makeText(getApplicationContext(), "All Fields Empty",Toast.LENGTH_LONG).show();
             valid = false;
         }
 
 
-        if(valid) {
+        if (!(calories.equals("") && protein.equals("") && fats.equals("") && carbs.equals(""))) {
+            if (calories.equals("")) {
+                calories = "0";
+            }
+            if (protein.equals("")) {
+                protein = "0";
+            }
+            if (fats.equals("")) {
+                fats = "0";
+            }
+            if (carbs.equals("")) {
+                carbs = "0";
+            }
+        }
+
+        if (valid) {
             Nutrition nutrition = new Nutrition(calories, fats, protein, carbs, date, onlineUser.getName());
             nutritionDatabase.addNutrition(nutrition);
 
