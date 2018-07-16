@@ -35,6 +35,8 @@ public class SignUp extends AppCompatActivity {
         password2 = (EditText) findViewById(R.id.password2Text);
 
         dbHandler = new UserDatabase(this);
+
+        textError = (TextView) findViewById(R.id.ErrorText);
     }
 
     //compare passwords
@@ -43,21 +45,52 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void newUser (View view) {
+        boolean bothUandP = false;
+
         if (dbHandler.checkUser(username.getText().toString())) {
             textError.setText("Username not available");
-        } else if (!allFieldsFilled(view)) {
-            textError.setText("Please be sure all entries valid");
-        } else if (!checkPass(password, password2)){
-            textError.setText("Passwords do not match");
-        }else {
-            User user = new User(username.getText().toString(), fName.getText().toString(), lName.getText().toString(), email.getText().toString(), password.getText().toString());
-            dbHandler.addUser(user);
-            Toast.makeText(getApplicationContext(), "User created", Toast.LENGTH_LONG).show();
-            Intent returnIntent = new Intent();
-            setResult(RESULT_OK, returnIntent);
-            finish();
-
+            bothUandP = true;
         }
+
+        if (!allFieldsFilled(view)) {
+            if(username.getText().toString().equals("")) {
+                username.setError("Field Empty");
+            }
+            if(fName.getText().toString().equals("")) {
+                fName.setError("Field Empty");
+            }
+            if(lName.getText().toString().equals("")) {
+                lName.setError("Field Empty");
+            }
+            if(email.getText().toString().equals("")) {
+                email.setError("Field Empty");
+            }
+            if(password.getText().toString().equals("")) {
+                password.setError("Field Empty");
+            }
+            if(password2.getText().toString().equals("")) {
+                password2.setError("Field Empty");
+            }
+            textError.setText("");
+
+        } else if (!checkPass(password, password2)){
+            if(bothUandP){
+                textError.setText("Username not available.\nPasswords do not match.");
+            } else {
+                textError.setText("Passwords do not match");
+            }
+        }else {
+            if(!bothUandP) {
+                User user = new User(username.getText().toString(), fName.getText().toString(), lName.getText().toString(), email.getText().toString(), password.getText().toString());
+                dbHandler.addUser(user);
+                Toast.makeText(getApplicationContext(), "User created", Toast.LENGTH_LONG).show();
+                Intent returnIntent = new Intent();
+                setResult(RESULT_OK, returnIntent);
+                finish();
+            }
+        }
+
+
     }
 
     private boolean allFieldsFilled(View view){
