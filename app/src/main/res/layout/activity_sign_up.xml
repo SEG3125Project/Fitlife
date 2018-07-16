@@ -101,8 +101,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text=""
-            android:textColor="#ff0000"
-            />
+            android:textColor="#ff0000" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

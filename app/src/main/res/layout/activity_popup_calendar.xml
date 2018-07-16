@@ -111,7 +111,6 @@
                 android:background="@drawable/buttonshape"
                 android:textColor="@color/white"
                 android:text="@string/logExercise"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginRight="10dp"/>
 
             <Button
@@ -120,8 +119,7 @@
                 android:id="@+id/logNutrition"
                 android:background="@drawable/buttonshape"
                 android:text="@string/logNutrition"
-                android:textColor="@color/white"
-                android:layout_gravity="center_horizontal"/>
+                android:textColor="@color/white"/>
 
 
         </LinearLayout>
