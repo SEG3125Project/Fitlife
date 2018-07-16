@@ -23,6 +23,7 @@ public class SignUp extends AppCompatActivity {
     UserDatabase dbHandler;
 
     ImageView iconImg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +41,11 @@ public class SignUp extends AppCompatActivity {
     }
 
     //compare passwords
-    public boolean checkPass (EditText fpassword, EditText spassword2){
+    public boolean checkPass(EditText fpassword, EditText spassword2) {
         return fpassword.getText().toString().equals(spassword2.getText().toString());
     }
 
-    public void newUser (View view) {
+    public void newUser(View view) {
         boolean bothUandP = false;
 
         if (dbHandler.checkUser(username.getText().toString())) {
@@ -53,34 +54,36 @@ public class SignUp extends AppCompatActivity {
         }
 
         if (!allFieldsFilled(view)) {
-            if(username.getText().toString().equals("")) {
+            if (username.getText().toString().equals("")) {
                 username.setError("Field Empty");
             }
-            if(fName.getText().toString().equals("")) {
+            if (fName.getText().toString().equals("")) {
                 fName.setError("Field Empty");
             }
-            if(lName.getText().toString().equals("")) {
+            if (lName.getText().toString().equals("")) {
                 lName.setError("Field Empty");
             }
-            if(email.getText().toString().equals("")) {
+            if (email.getText().toString().equals("")) {
                 email.setError("Field Empty");
             }
-            if(password.getText().toString().equals("")) {
+            if (password.getText().toString().equals("")) {
                 password.setError("Field Empty");
             }
-            if(password2.getText().toString().equals("")) {
+            if (password2.getText().toString().equals("")) {
                 password2.setError("Field Empty");
             }
             textError.setText("");
 
-        } else if (!checkPass(password, password2)){
-            if(bothUandP){
+        } else if (!checkPass(password, password2)) {
+            if (bothUandP) {
                 textError.setText("Username not available.\nPasswords do not match.");
             } else {
                 textError.setText("Passwords do not match");
             }
-        }else {
-            if(!bothUandP) {
+        } else if (!(email.getText().toString().contains("@"))) {
+            email.setError("Not a valid Email");
+        } else {
+            if (!bothUandP) {
                 User user = new User(username.getText().toString(), fName.getText().toString(), lName.getText().toString(), email.getText().toString(), password.getText().toString());
                 dbHandler.addUser(user);
                 Toast.makeText(getApplicationContext(), "User created", Toast.LENGTH_LONG).show();
@@ -93,11 +96,11 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    private boolean allFieldsFilled(View view){
+    private boolean allFieldsFilled(View view) {
         return !(username.getText().toString().equals("") || fName.getText().toString().equals("") || lName.getText().toString().equals("") || email.getText().toString().equals("") || password.getText().toString().equals(""));
     }
 
-    public void cancel(View view){
+    public void cancel(View view) {
         Intent returnIntent = new Intent();
         setResult(RESULT_CANCELED, returnIntent);
         finish();
