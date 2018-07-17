@@ -28,6 +28,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 import static java.util.Calendar.getInstance;
 
 public class Calendar extends AppCompatActivity {
@@ -190,7 +192,6 @@ public class Calendar extends AppCompatActivity {
 
         for (final Exercise e : exercises) {
             if ((e.getOwner() != null) && ((e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getName().equals("") && !e.getWeight().equals("")))) {
-
 
                 LinearLayout titleHorizontal = new LinearLayout(this);
                 titleHorizontal.setOrientation(LinearLayout.HORIZONTAL);
