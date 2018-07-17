@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -235,7 +236,7 @@ public class Calendar extends AppCompatActivity {
                 horizontalLeft.setLayoutParams(paramsLeft);
 
 
-                String exerciseString = "         Weight: " + e.getWeight() + "\n         Sets: " + e.getSets() + "\n         Reps: " + e.getReps() + "\n";
+                String exerciseString = "         Weight: " + e.getWeight() + "lbs\n         Sets: " + e.getSets() + "\n         Reps: " + e.getReps() + "\n";
 //                String cardioString = "\n Cardio: " + e.getIsCardio() + "\n Time: " + e.getTime();
                 Button delete = new Button(this);
 //                delete.setBackground();
@@ -271,6 +272,7 @@ public class Calendar extends AppCompatActivity {
                 TextView textView = new TextView(this);
 
                 titleTextView.setText("     " + e.getName());
+                titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f);
                 textView.setText(exerciseString);
 
                 horizontalLeft.addView(textView);
@@ -336,7 +338,7 @@ public class Calendar extends AppCompatActivity {
                 horizontalLeft.setLayoutParams(paramsLeft);
 
 
-                String exerciseString = "         Name: " + e.getIsCardio() + "\n         Time: " + e.getTime();
+                String exerciseString = "         Name: " + e.getIsCardio() + "\n         Time: " + e.getTime() + "mins\n";
                 Button delete = new Button(this);
 //                delete.setBackground();
                 delete.setOnClickListener(new View.OnClickListener() {
@@ -420,7 +422,7 @@ public class Calendar extends AppCompatActivity {
                 paramsLeft.weight = 6.0f;
                 horizontalLeft.setLayoutParams(paramsLeft);
 
-                String nutritionString = "         Calories: " + n.getCalories() + "\n         Fats: " + n.getFats() + "\n         Protein: " + n.getProtein() + "\n         Carbohydrates: " + n.getCarbs();
+                String nutritionString = "         Calories: " + n.getCalories() + "\n         Fats: " + n.getFats() + "g\n         Protein: " + n.getProtein() + "g\n         Carbohydrates: " + n.getCarbs() + "g\n";
 
                 Button delete = new Button(this);
 //                delete.setBackground();
@@ -428,7 +430,7 @@ public class Calendar extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 //                        Log.d("NUTRITION", n.getCalories());
-                        Log.d("Nutrition", "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "\n Protein: " + n.getProtein() + "\n Carbohydrates: " + n.getCarbs() + "\n Date: " + n.getDate() + " \n Owner: " + n.getOwner());
+                        Log.d("Nutrition", "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "g\n Protein: " + n.getProtein() + "g\n Carbohydrates: " + n.getCarbs() + "g\n Date: " + n.getDate() + "g\n Owner: " + n.getOwner());
                         boolean deleted = nutritionDatabase.deleteNutrition(n.getCalories(), n.getFats(), n.getProtein(), n.getCarbs(), n.getDate(), n.getOwner());
                         if(deleted) {
                             Toast.makeText(getApplicationContext(), "Nutrition Deleted.", Toast.LENGTH_LONG).show();

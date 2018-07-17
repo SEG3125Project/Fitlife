@@ -354,30 +354,36 @@ public class LogExercise extends AppCompatActivity {
                 time = "";
             }
 
-            if(name.equals("")){
-                listOLists.get(i).get(0).setError("Field Empty");
-                addToDB = false;
-            }
-            if(weight.equals("")){
-                listOLists.get(i).get(1).setError("Field Empty");
-                addToDB = false;
-            }
-            if(sets.equals("")){
-                listOLists.get(i).get(2).setError("Field Empty");
-                addToDB = false;
-            }
-            if(reps.equals("")){
-                listOLists.get(i).get(3).setError("Field Empty");
-                addToDB = false;
+            if(isCardio.equals("") && time.equals("")) {
+                if(!(name.equals("") && weight.equals("") && sets.equals("") && reps.equals(""))) {
+                    if (name.equals("")) {
+                        listOLists.get(i).get(0).setError("Field Empty");
+                        addToDB = false;
+                    }
+                    if (weight.equals("")) {
+                        listOLists.get(i).get(1).setError("Field Empty");
+                        addToDB = false;
+                    }
+                    if (sets.equals("")) {
+                        listOLists.get(i).get(2).setError("Field Empty");
+                        addToDB = false;
+                    }
+                    if (reps.equals("")) {
+                        listOLists.get(i).get(3).setError("Field Empty");
+                        addToDB = false;
+                    }
+                }
             }
 
-            if(name.equals("") && name.equals("") && name.equals("") && name.equals("")){
+            if(name.equals("") && weight.equals("") && sets.equals("") && reps.equals("")){
                 if(isCardio.equals("") && time.equals("")){
                     addToDB = false;
+                    Toast.makeText(getApplicationContext(), "All Fields Empty", Toast.LENGTH_LONG).show();
                 } else {
                     addToDB = true;
                 }
             }
+
 
             if(addToDB){
                 exercise = new Exercise(name, isCardio, time, weight, sets, reps, user, date);
