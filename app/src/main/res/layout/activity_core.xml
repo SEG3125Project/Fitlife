@@ -29,27 +29,27 @@
                 <ImageView
                     android:id="@+id/plank"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/plank" />
+                    android:background="@drawable/plank2" />
 
                 <ImageView
                     android:id="@+id/crunches"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/crunches" />
+                    android:background="@drawable/crunches2" />
 
                 <ImageView
                     android:id="@+id/leg_raises"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/leg_raises" />
+                    android:background="@drawable/leg_raises2" />
 
 
             </LinearLayout>

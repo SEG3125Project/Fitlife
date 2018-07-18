@@ -28,27 +28,27 @@
                 <ImageView
                     android:id="@+id/barbell_row"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/barbell_row" />
+                    android:background="@drawable/barbell_row2" />
 
                 <ImageView
                     android:id="@+id/lat_pulldown"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/lat_pulldown" />
+                    android:background="@drawable/lat_pulldown1" />
 
                 <ImageView
                     android:id="@+id/dumbbell_shrug"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/dumbbell_shrug" />
+                    android:background="@drawable/dumbbell_shrug2" />
 
 
             </LinearLayout>

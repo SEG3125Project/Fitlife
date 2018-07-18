@@ -28,35 +28,35 @@
                 <ImageView
                     android:id="@+id/flat_bench"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="5dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/flat_bench" />
+                    android:background="@drawable/flat_bench2" />
 
                 <ImageView
                     android:id="@+id/dumbbell_inlcine"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/dumbbell_incline" />
+                    android:background="@drawable/dumbbell_incline2" />
 
                 <ImageView
                     android:id="@+id/dumbbell_fly"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/dumbbell_fly" />
+                    android:background="@drawable/dumbbell_fly2" />
 
                 <ImageView
                     android:id="@+id/chest_dip"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="288dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/chest_dip" />
+                    android:background="@drawable/chest_dip2" />
 
 
             </LinearLayout>

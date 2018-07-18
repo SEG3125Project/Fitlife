@@ -1,6 +1,7 @@
 package org.twocoolguys.fitlife;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,6 +20,9 @@ public class Core extends AppCompatActivity {
     ImageView plank, legRaises, crunches;
     Animation lefttoright, righttoleft;
 
+    UserDatabase userDatabase = new UserDatabase(this);
+    User onlineUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,14 @@ public class Core extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView = (NavigationView) findViewById(R.id.nav);
         navigationView.setItemIconTintList(null);
+
+
+        SharedPreferences sessionDetails = getSharedPreferences("sessionDetails", MODE_PRIVATE); //get online user
+        String s = sessionDetails.getString("sessionUsername", null);
+        onlineUser = userDatabase.getUserByName(s);
+
+        navigationView.getMenu().findItem(R.id.nav_account).setTitle(onlineUser.getFirstName() + " " + onlineUser.getLastName()); //set the username on the navigation menu
+
 
 
         plank = (ImageView)findViewById(R.id.plank);

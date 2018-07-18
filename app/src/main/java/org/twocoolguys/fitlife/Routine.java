@@ -42,7 +42,7 @@ public class Routine extends AppCompatActivity {
         String s = sessionDetails.getString("sessionUsername", null);
         onlineUser = userDatabase.getUserByName(s);
 
-        navigationView.getMenu().findItem(R.id.nav_account).setTitle("@" + onlineUser.getName()); //set the username on the navigation menu
+        navigationView.getMenu().findItem(R.id.nav_account).setTitle(onlineUser.getFirstName() + " " + onlineUser.getLastName()); //set the username on the navigation menu
 
         chest = (ImageView) findViewById(R.id.chestImage);
         back = (ImageView) findViewById(R.id.backImage);

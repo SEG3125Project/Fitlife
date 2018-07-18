@@ -224,9 +224,7 @@ public class Calendar extends AppCompatActivity {
 //                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
                 underlineParams.setMargins(40,0,40,0);
                 underline.setLayoutParams(underlineParams);
-
-
-
+                
 
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
@@ -347,6 +345,17 @@ public class Calendar extends AppCompatActivity {
                 );
                 horizontal.setLayoutParams(params);
 
+
+                LinearLayout underline = new LinearLayout(this); //underline below exercise title
+                underline.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout.LayoutParams underlineParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+//                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
+                underlineParams.setMargins(40,0,40,0);
+                underline.setLayoutParams(underlineParams);
+
                 //horizontalRight
                 LinearLayout horizontalRight = new LinearLayout(this);
                 horizontalRight.setOrientation(LinearLayout.HORIZONTAL);
@@ -392,6 +401,9 @@ public class Calendar extends AppCompatActivity {
                 LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
 //                paramsButton.weight = 1.0f;
                 paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+
+                paramsButton.setMargins(0,20,0,20); //set margins to button
+
                 delete.setLayoutParams(paramsButton);
                 delete.setBackgroundResource(R.drawable.trash);
 
@@ -401,6 +413,7 @@ public class Calendar extends AppCompatActivity {
                 horizontalRight.addView(delete);
                 horizontal.addView(horizontalLeft);
                 horizontal.addView(horizontalRight);
+                mLinearLayout.addView(underline);
                 mLinearLayout.addView(horizontal);
                 showNone = false;
             }
@@ -477,6 +490,9 @@ public class Calendar extends AppCompatActivity {
                 LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
 //                paramsButton.weight = 1.0f;
                 paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
+
+                paramsButton.setMargins(0,20,0,20); //set margins to button
+
                 delete.setLayoutParams(paramsButton);
                 delete.setBackgroundResource(R.drawable.trash);
 
