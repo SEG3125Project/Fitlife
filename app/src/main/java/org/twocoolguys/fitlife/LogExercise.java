@@ -232,7 +232,7 @@ public class LogExercise extends AppCompatActivity {
         TextView textView1 = new TextView(this);
         textView1.setText("Exercise");
         TextView textView2 = new TextView(this);
-        textView2.setText("Weight");
+        textView2.setText("Weight (lbs)");
         TextView textView3 = new TextView(this);
         textView3.setText("Sets");
         TextView textView4 = new TextView(this);
