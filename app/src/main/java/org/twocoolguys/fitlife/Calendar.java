@@ -29,7 +29,12 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import static java.util.Calendar.getInstance;
 
@@ -50,6 +55,7 @@ public class Calendar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.calendarDrawerLayout); //navigation bar
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -79,6 +85,12 @@ public class Calendar extends AppCompatActivity {
                 //this is where the pressing of the date stuff will happen
 
 
+                java.util.Calendar selected = java.util.Calendar.getInstance(); //we have same name as java's calendar class
+                selected.set(year, month, day);
+                SimpleDateFormat formatter = new SimpleDateFormat("EEEE, MMM d, yyyy"); //set format format for date
+                String dayTitlePopup = formatter.format(selected.getTime());
+
+
                 date = year + "/" + (month + 1) + "/" + day;
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(Calendar.this);
@@ -99,7 +111,7 @@ public class Calendar extends AppCompatActivity {
                 dialog.show(); //create new dialog box with option to see current info for that day or to log exercises, nutrition
 
 
-                datePopup.setText(date); //set selected date to the date of the popup
+                datePopup.setText(dayTitlePopup); //set selected date to the date of the popup
 
 
                 logExerciseButton.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +215,19 @@ public class Calendar extends AppCompatActivity {
 //                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
                 titleHorizontal.setLayoutParams(titleParams);
 
+                LinearLayout underline = new LinearLayout(this); //underline below exercise title
+                underline.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout.LayoutParams underlineParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+//                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
+                underlineParams.setMargins(40,0,40,0);
+                underline.setLayoutParams(underlineParams);
+
+
+
+
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -262,6 +287,8 @@ public class Calendar extends AppCompatActivity {
                 paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
 //                paramsButton.gravity = Gravity.END;
 
+                paramsButton.setMargins(0,20,0,20); //set margins to button
+
                 delete.setLayoutParams(paramsButton);
                 delete.setBackgroundResource(R.drawable.trash);
 //                delete.setGravity(Gravity.RIGHT);
@@ -270,11 +297,17 @@ public class Calendar extends AppCompatActivity {
 
                 TextView titleTextView = new TextView(this);
                 TextView textView = new TextView(this);
+                View underlineView = new View(this);
+
 
                 titleTextView.setText("     " + e.getName());
                 titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f);
+
+                underlineView.setBackgroundResource(R.drawable.horizontal_line);
+
                 textView.setText(exerciseString);
 
+                underline.addView(underlineView);
                 horizontalLeft.addView(textView);
                 horizontalRight.addView(delete);
                 horizontal.addView(horizontalLeft);
@@ -282,6 +315,7 @@ public class Calendar extends AppCompatActivity {
                 titleHorizontal.addView(titleTextView);
 
                 mLinearLayout.addView(titleHorizontal);
+                mLinearLayout.addView(underline);
                 mLinearLayout.addView(horizontal);
                 showNone = false;
             }
