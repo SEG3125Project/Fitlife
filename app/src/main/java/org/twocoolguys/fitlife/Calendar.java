@@ -224,7 +224,7 @@ public class Calendar extends AppCompatActivity {
 //                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
                 underlineParams.setMargins(40,0,40,0);
                 underline.setLayoutParams(underlineParams);
-                
+
 
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
