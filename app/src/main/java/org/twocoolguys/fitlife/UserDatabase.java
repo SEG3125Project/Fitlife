@@ -39,11 +39,8 @@ public class UserDatabase extends SQLiteOpenHelper{
     }
 
 
-    //Creates both tables
     @Override
     public void onCreate(SQLiteDatabase db){
-        //Create the table for users
-        //String CREATE_TABLEq = "CREATE TABLE " + TABLE_USERS + "(" + COLUMN_NAME + " TEXT PRIMARY KEY," + COLUMN_PASSWORDS + " TEXT," + COLUMN_POINTS + " INTEGER," + COLUMN_ISADULT + " INTEGER, " + COLUMN_ICON + " TEXT)";
 
         String CREATE_TABLE = "CREATE TABLE " + TABLE_USERS + "(" + COLUMN_NAME + " TEXT PRIMARY KEY, " + COLUMN_FIRSTNAME + " TEXT, " + COLUMN_LASTNAME + " TEXT, " + COLUMN_EMAIL + " TEXT, " + COLUMN_PASSWORDS + " TEXT)";
 
@@ -52,7 +49,6 @@ public class UserDatabase extends SQLiteOpenHelper{
 
     }
 
-    //Overridden onUpgrade(). Updates the database tables.
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
@@ -170,39 +166,37 @@ public class UserDatabase extends SQLiteOpenHelper{
     }
 
 
-    //only used in testing to delete a previously created person
-    public void deleteUser(String name){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "Select * FROM " + TABLE_USERS + " WHERE " + COLUMN_NAME + " = \"" + name + "\"";
-        Cursor cursor = db.rawQuery(query, null);
-        if(cursor.moveToFirst()){
-            String idStr = cursor.getString(0);
-            db.delete(TABLE_USERS, COLUMN_NAME + " = " + idStr, null);
-            cursor.close();
-        }
-        db.close();
-    }
-    //updates everything except for adult status
-    public void updateUser(User updatedUser) {
-        //getting database and building a new content values variable from the passed user
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME, updatedUser.getName());
-        cv.put(COLUMN_FIRSTNAME, updatedUser.getFirstName());
-        cv.put(COLUMN_LASTNAME, updatedUser.getLastName());
-        cv.put(COLUMN_EMAIL, updatedUser.getEmail());
-        cv.put(COLUMN_PASSWORDS, updatedUser.getPassword());
-
-        //building the search query and finding the proper value
-        String query = "Select * FROM " + TABLE_USERS + " WHERE " + COLUMN_NAME + " = \'" + updatedUser.getName() + "\'";
-        String[] name = {updatedUser.getName()};
-        Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()){
-            //where clause should use selection args, unsanitzed sql inputs are dangerous and prone
-            //to injection
-            db.update(TABLE_USERS,cv, COLUMN_NAME + "=?", name);
-            cursor.close();
-        }
-        db.close();
-    }
+//    //only used in testing to delete a previously created person
+//    public void deleteUser(String name){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String query = "Select * FROM " + TABLE_USERS + " WHERE " + COLUMN_NAME + " = \"" + name + "\"";
+//        Cursor cursor = db.rawQuery(query, null);
+//        if(cursor.moveToFirst()){
+//            String idStr = cursor.getString(0);
+//            db.delete(TABLE_USERS, COLUMN_NAME + " = " + idStr, null);
+//            cursor.close();
+//        }
+//        db.close();
+//    }
+//    public void updateUser(User updatedUser) {
+//        //getting database and building a new content values variable from the passed user
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues cv = new ContentValues();
+//        cv.put(COLUMN_NAME, updatedUser.getName());
+//        cv.put(COLUMN_FIRSTNAME, updatedUser.getFirstName());
+//        cv.put(COLUMN_LASTNAME, updatedUser.getLastName());
+//        cv.put(COLUMN_EMAIL, updatedUser.getEmail());
+//        cv.put(COLUMN_PASSWORDS, updatedUser.getPassword());
+//
+//        //building the search query and finding the proper value
+//        String query = "Select * FROM " + TABLE_USERS + " WHERE " + COLUMN_NAME + " = \'" + updatedUser.getName() + "\'";
+//        String[] name = {updatedUser.getName()};
+//        Cursor cursor = db.rawQuery(query, null);
+//        if (cursor.moveToFirst()){
+//
+//            db.update(TABLE_USERS,cv, COLUMN_NAME + "=?", name);
+//            cursor.close();
+//        }
+//        db.close();
+//    }
 }

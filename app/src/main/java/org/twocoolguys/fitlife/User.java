@@ -6,7 +6,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private String password; //could hash this but not useful for this project
+    private String password;
 
     public User(String name, String firstName, String lastName, String email, String password){
         this.name = name;

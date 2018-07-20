@@ -148,13 +148,6 @@ public class Calendar extends AppCompatActivity {
                 });
 
 
-
-              /*  Intent i = new Intent(Calendar.this, PopupCalendar.class);
-                i.putExtra("date", date);
-                startActivity(i);*/
-
-
-                //System.out.println(date);
             }
         });
 
@@ -212,7 +205,6 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
                 titleHorizontal.setLayoutParams(titleParams);
 
                 LinearLayout underline = new LinearLayout(this); //underline below exercise title
@@ -221,7 +213,6 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
                 underlineParams.setMargins(40,0,40,0);
                 underline.setLayoutParams(underlineParams);
 
@@ -241,8 +232,7 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                horizontalRight.setGravity(Gravity.CENTER_HORIZONTAL);
-//                horizontalRight.setBackgroundColor(Color.GREEN);
+
                 paramsRight.weight = 1.0f;
                 horizontalRight.setLayoutParams(paramsRight);
                 //horizontalLeft
@@ -252,17 +242,15 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                horizontal.setGravity(Gravity.CENTER_HORIZONTAL);
-//                horizontalLeft.setBackgroundColor(Color.GRAY);
+
 
                 paramsLeft.weight = 6.0f;
                 horizontalLeft.setLayoutParams(paramsLeft);
 
 
                 String exerciseString = "         Weight: " + e.getWeight() + "lbs\n         Sets: " + e.getSets() + "\n         Reps: " + e.getReps() + "\n";
-//                String cardioString = "\n Cardio: " + e.getIsCardio() + "\n Time: " + e.getTime();
                 Button delete = new Button(this);
-//                delete.setBackground();
+
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -281,17 +269,14 @@ public class Calendar extends AppCompatActivity {
                 });
 
                 LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
-//                paramsButton.weight = 1.0f;
                 paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
-//                paramsButton.gravity = Gravity.END;
+
 
                 paramsButton.setMargins(0,20,0,20); //set margins to button
 
                 delete.setLayoutParams(paramsButton);
                 delete.setBackgroundResource(R.drawable.trash);
-//                delete.setGravity(Gravity.RIGHT);
 
-                //layout_alignParentRight = true
 
                 TextView titleTextView = new TextView(this);
                 TextView textView = new TextView(this);
@@ -337,6 +322,15 @@ public class Calendar extends AppCompatActivity {
         for (final Exercise e : exercises) {
             if ((e.getOwner() != null) && (e.getOwner().equals(onlineUser.getName()) && e.getDate().equals(date) && !e.getIsCardio().equals(""))) {
 
+                LinearLayout titleHorizontal = new LinearLayout(this);
+                titleHorizontal.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+//                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
+                titleHorizontal.setLayoutParams(titleParams);
+
                 LinearLayout horizontal = new LinearLayout(this);
                 horizontal.setOrientation(LinearLayout.HORIZONTAL);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -352,19 +346,16 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                titleParams.gravity = Gravity.CENTER_HORIZONTAL;
                 underlineParams.setMargins(40,0,40,0);
                 underline.setLayoutParams(underlineParams);
 
-                //horizontalRight
                 LinearLayout horizontalRight = new LinearLayout(this);
                 horizontalRight.setOrientation(LinearLayout.HORIZONTAL);
                 LinearLayout.LayoutParams paramsRight = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                horizontalRight.setGravity(Gravity.CENTER_HORIZONTAL);
-//                horizontalRight.setBackgroundColor(Color.GREEN);
+
                 paramsRight.weight = 1.0f;
                 horizontalRight.setLayoutParams(paramsRight);
                 //horizontalLeft
@@ -374,14 +365,13 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                horizontal.setGravity(Gravity.CENTER_HORIZONTAL);
-//                horizontalLeft.setBackgroundColor(Color.GRAY);
+
 
                 paramsLeft.weight = 6.0f;
                 horizontalLeft.setLayoutParams(paramsLeft);
 
 
-                String exerciseString = "         Name: " + e.getIsCardio() + "\n         Time: " + e.getTime() + "mins\n";
+                String exerciseString = "         Time: " + e.getTime() + "mins\n";
                 Button delete = new Button(this);
 //                delete.setBackground();
                 delete.setOnClickListener(new View.OnClickListener() {
@@ -408,11 +398,24 @@ public class Calendar extends AppCompatActivity {
                 delete.setBackgroundResource(R.drawable.trash);
 
                 TextView textView = new TextView(this);
+                TextView titleTextView = new TextView(this);
+                View underlineView = new View(this);
+
+
+                titleTextView.setText("     " + e.getIsCardio());
+                titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f);
+
+                underlineView.setBackgroundResource(R.drawable.horizontal_line);
+
+                underline.addView(underlineView);
                 textView.setText(exerciseString);
                 horizontalLeft.addView(textView);
                 horizontalRight.addView(delete);
                 horizontal.addView(horizontalLeft);
                 horizontal.addView(horizontalRight);
+                titleHorizontal.addView(titleTextView);
+
+                mLinearLayout.addView(titleHorizontal);
                 mLinearLayout.addView(underline);
                 mLinearLayout.addView(horizontal);
                 showNone = false;
@@ -444,7 +447,6 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.MATCH_PARENT
                 );
                 horizontal.setLayoutParams(params);
-//                horizontal.setBackgroundColor(0xFF00FF00);
 
                 //horizontalRight
                 LinearLayout horizontalRight = new LinearLayout(this);
@@ -453,8 +455,7 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                horizontalRight.setGravity(Gravity.CENTER_HORIZONTAL);
-//                horizontalRight.setBackgroundColor(Color.GREEN);
+
                 paramsRight.weight = 1.0f;
                 horizontalRight.setLayoutParams(paramsRight);
                 //horizontalLeft
@@ -464,19 +465,16 @@ public class Calendar extends AppCompatActivity {
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
                 );
-//                horizontal.setGravity(Gravity.CENTER_HORIZONTAL);
-//                horizontalLeft.setBackgroundColor(Color.GRAY);
+
                 paramsLeft.weight = 6.0f;
                 horizontalLeft.setLayoutParams(paramsLeft);
 
                 String nutritionString = "         Calories: " + n.getCalories() + "\n         Fats: " + n.getFats() + "g\n         Protein: " + n.getProtein() + "g\n         Carbohydrates: " + n.getCarbs() + "g\n";
 
                 Button delete = new Button(this);
-//                delete.setBackground();
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        Log.d("NUTRITION", n.getCalories());
                         Log.d("Nutrition", "\n Calories: " + n.getCalories() + "\n Fats: " + n.getFats() + "g\n Protein: " + n.getProtein() + "g\n Carbohydrates: " + n.getCarbs() + "g\n Date: " + n.getDate() + "g\n Owner: " + n.getOwner());
                         boolean deleted = nutritionDatabase.deleteNutrition(n.getCalories(), n.getFats(), n.getProtein(), n.getCarbs(), n.getDate(), n.getOwner());
                         if(deleted) {
@@ -488,7 +486,6 @@ public class Calendar extends AppCompatActivity {
                 });
 
                 LinearLayout.LayoutParams paramsButton = new LinearLayout.LayoutParams(80, 80);
-//                paramsButton.weight = 1.0f;
                 paramsButton.gravity = Gravity.END | Gravity.CENTER_VERTICAL;
 
                 paramsButton.setMargins(0,20,0,20); //set margins to button

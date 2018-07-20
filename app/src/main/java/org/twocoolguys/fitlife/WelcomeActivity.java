@@ -21,21 +21,5 @@ public class WelcomeActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), SignUp.class);
             startActivity(intent);
         }
-//        Button login = (Button)findViewById(R.id.loginButton);
-//        Button signup = (Button)findViewById(R.id.signupButton);
-//
-//        login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(WelcomeActivity.this, Login.class));
-//            }
-//        });
-//
-//        signup.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(WelcomeActivity.this, SignUp.class));
-//            }
-//        });
 
 }

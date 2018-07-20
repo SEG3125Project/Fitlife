@@ -164,23 +164,5 @@ public class ExerciseDatabase extends SQLiteOpenHelper {
 
         return false;
     }
-//    public void updateexercise(Exercise exercise, String oldName) {
-//        //if the name of the exercise is being changed, this method is called
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        cv.put(COLUMN_EXERCISES, exercise.getName());
-//        cv.put(COLUMN_ISCARDIO, exercise.isCardio());
-//        cv.put(COLUMN_TIME, exercise.getTime());
-//        cv.put(COLUMN_WEIGHT, exercise.getWeight());
-//        cv.put(COLUMN_SETS, exercise.getSets());
-//        cv.put(COLUMN_REPS, exercise.getReps());
-//        String query = "Select * FROM " + TABLE_EXERCISES + " WHERE " + COLUMN_EXERCISES + " = \'" + oldName + "\'";
-//        String[] name = {oldName};
-//        Cursor cursor = db.rawQuery(query, null);
-//        if (cursor.moveToFirst()){
-//            db.update(TABLE_EXERCISES,cv, COLUMN_EXERCISES + "=?", name);
-//            cursor.close();
-//        }
-//        db.close();
-//    }
+
 }

@@ -41,7 +41,6 @@ public class NutritionDatabase extends SQLiteOpenHelper {
         db.execSQL(CREATE_NUTRITIONS_TABLE);
     }
 
-    //Overridden onUpgrade(). Updates the database, again for both Nutritions.
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NUTRITIONS);
@@ -63,7 +62,7 @@ public class NutritionDatabase extends SQLiteOpenHelper {
     }
 
     public Nutrition[] getAllNutritions(){
-        //created by Chris 2017/11/27
+        //created by Chris
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<Nutrition> nutritionList = new ArrayList<Nutrition>();
         //cursor is used to parse through the rows of table used with .moveToNext
@@ -98,36 +97,6 @@ public class NutritionDatabase extends SQLiteOpenHelper {
         db.close();
         return newnutritionList;
     }
-//    public boolean deleteNutrition(String calories, String fats, String protein, String carbs, String date, String owner){
-//        boolean result = false;
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        String query = "Select * FROM " + TABLE_NUTRITIONS + " WHERE " + COLUMN_CARBS + " = \"" + carbs + "\"";
-//        Cursor cursor = db.rawQuery(query, null);
-//        Log.e("TEST","test0");
-//
-//        if (cursor.moveToFirst()){
-//            Log.e("TEST","test1");
-//
-//            String[] name = {carbs, fats, calories, protein, date, owner};
-//            int deleteRow = db.delete(TABLE_NUTRITIONS,
-//                    COLUMN_CARBS + "=? AND " +
-//                            COLUMN_FATS + "=? AND " +
-//                            COLUMN_CALORIES + "=? AND " +
-//                            COLUMN_PROTEIN + "=? AND " +
-//                            COLUMN_DATE + "=? AND " +
-//                            COLUMN_OWNER + "=?" ,
-//                    name);
-//            cursor.close();
-//            if(deleteRow > 0) {
-//                result = true;
-//                Log.e("TEST","test");
-//            }
-//
-//
-//        }
-//        db.close();
-//        return result;
-//    }
 
     public boolean deleteNutrition(String calories, String fats, String protein, String carbs, String date, String owner){
         boolean result = false;
@@ -149,49 +118,12 @@ public class NutritionDatabase extends SQLiteOpenHelper {
                             COLUMN_OWNER + "=?",
                     name);
             cursor.close();
-//            if(deleteRow > 0) {
                 result = true;
                 Log.e("TEST","test");
-//            }
         }
         db.close();
         return result;
     }
 
-//    public void updateNutrition(Nutrition nutrition) {
-//        //follows same pattern as updateUser in UserDatabase, see function there
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        cv.put(COLUMN_FATS, nutrition.getFats());
-//        cv.put(COLUMN_CALORIES, nutrition.getCalories());
-//        cv.put(COLUMN_PROTEIN, nutrition.getProtein());
-//        cv.put(COLUMN_CARBS, nutrition.getCarbs());
-//        String query = "Select * FROM " + TABLE_NUTRITIONS + " WHERE " + COLUMN_CALORIES + " = \'" + nutrition.getCalories() + "\'";
-//        String[] name = {nutrition.getCalories()};
-//        Cursor cursor = db.rawQuery(query, null);
-//        if (cursor.moveToFirst()){
-//            db.update(TABLE_NUTRITIONS,cv, COLUMN_CALORIES + "=?", name);
-//            cursor.close();
-//        }
-//        db.close();
-//    }
-//    public void updatenutrition(Nutrition nutrition, String oldName) {
-//        //if the name of the nutrition is being changed, this method is called
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        cv.put(COLUMN_NUTRITIONS, nutrition.getName());
-//        cv.put(COLUMN_FATS, nutrition.isCardio());
-//        cv.put(COLUMN_CALORIES, nutrition.getTime());
-//        cv.put(COLUMN_PROTEIN, nutrition.getWeight());
-//        cv.put(COLUMN_CARBS, nutrition.getSets());
-//        cv.put(COLUMN_REPS, nutrition.getReps());
-//        String query = "Select * FROM " + TABLE_NUTRITIONS + " WHERE " + COLUMN_NUTRITIONS + " = \'" + oldName + "\'";
-//        String[] name = {oldName};
-//        Cursor cursor = db.rawQuery(query, null);
-//        if (cursor.moveToFirst()){
-//            db.update(TABLE_NUTRITIONS,cv, COLUMN_NUTRITIONS + "=?", name);
-//            cursor.close();
-//        }
-//        db.close();
-//    }
+
 }

@@ -209,8 +209,6 @@ public class LogExercise extends AppCompatActivity {
 
     public void addNewExercise(View view) {
         singleList = new ArrayList<EditText>();
-//        Button but = (Button) findViewById(R.id.subtractButton);
-//        but.setVisibility(View.VISIBLE);
 
         LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
 
@@ -269,23 +267,19 @@ public class LogExercise extends AppCompatActivity {
         exerciseAutoEditText.setDropDownHorizontalOffset(exerciseAutoEditTextOrig.getDropDownHorizontalOffset());
 
 
-//        System.out.println(count);
         weightEditText.setText("Weight (lbs)");
         weightEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
         weightEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
         weightEditText.setId(count++ + groupCount);
-//        System.out.println(count);
         setsEditText.setText("Sets");
         setsEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
         setsEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
         setsEditText.setId(count++ + groupCount);
-//        System.out.println(count);
         repsEditText.setText("Reps");
         repsEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
         repsEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
         repsEditText.setId(count++ + groupCount);
-//        System.out.println(count);
-//        System.out.println(groupCount);
+
         //        this adds the text when the button is pressed
 
         final ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(50,30);
@@ -400,41 +394,6 @@ public class LogExercise extends AppCompatActivity {
     }
 
 
-    public void subtractNewExercise(View veiw) {
-
-        if (groupCount <= 20) {
-//            Button button = (Button) findViewById(R.id.subtractButton);
-//            button.setVisibility(View.INVISIBLE);
-        }
-        LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
-
-//        EditText exerciseAutoEditText = (EditText) findViewById(24);
-
-
-//        mLinearLayout.removeView(exerciseAutoEditText);
-    }
-//    public void subtractNewExercise(View veiw){
-//
-//        if(groupCount <= 20){
-//            Button button = (Button) findViewById(R.id.subtractButton);
-//            button.setVisibility(View.INVISIBLE);
-//        }
-//        LinearLayout mLinearLayout = (LinearLayout) findViewById(R.id.verticalLayout1);
-//
-//        EditText exerciseAutoEditText = (EditText) findViewById(groupCount + count - 4);
-//        EditText weightEditText = (EditText) findViewById(groupCount + count - 3);
-//        EditText setsEditText = (EditText) findViewById(groupCount + count - 2);
-//        EditText repsEditText = (EditText) findViewById(groupCount + count - 1);
-//
-//        mLinearLayout.removeView(exerciseAutoEditText);
-//        mLinearLayout.removeView(weightEditText);
-//        mLinearLayout.removeView(setsEditText);
-//        mLinearLayout.removeView(repsEditText);
-//        System.out.println("THE COUNT BEFORE IS. COUNT:" + count + "GROUPCOUNT:" + groupCount);
-//        count -= 4;
-//        groupCount -= 10;
-//        System.out.println("THE COUNT AFTER IS. COUNT:" + count + "GROUPCOUNT:" + groupCount);
-//    }
 
 
     public void getInformationWithIds(View view){
